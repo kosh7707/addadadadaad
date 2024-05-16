@@ -9,8 +9,9 @@ exports.register = async (req, res, next) => {
         if (result.rows.length === 0) {
             const hash = await bcrypt.hash(user_pw, 12);
             await db.query(`insert into accounts(user_id, user_pw) values ($1, $2)`, [user_id, hash]);
+            return res.status(200).json({ message: `회원가입 성공` });
         }
-        return res.redirect('/');
+        else return res.status(400).json({ message: `유저 아이디 중복` });
     } catch (err) {
         console.error(err);
         return next(err);
@@ -24,7 +25,7 @@ exports.login = (req, res, next) => {
             return next(authErr);
         }
         if (!user) {
-            return res.redirect('/');
+            return res.status(401).redirect('/auth/login');
         }
         return req.login(user, async (loginErr) => {
             if (loginErr) {
@@ -32,13 +33,13 @@ exports.login = (req, res, next) => {
                 return next(loginErr);
             }
             await db.query(`update accounts set last_login = current_timestamp where account_id = $1`, [user.account_id]);
-            return res.redirect('/');
+            return res.status(200).json({ message: `로그인 성공` });
         });
     }) (req, res, next);
 };
 
 exports.logout = (req, res) => {
     req.logout(() => {
-        res.redirect('/');
+        return res.status(200).json({ message: `로그아웃 성공` });
     });
 };
