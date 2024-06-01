@@ -1,4 +1,4 @@
-export const PAGE_MAX_WIDTH = '1200px';
+export const PAGE_MAX_WIDTH = '1000px';
 export const RESPONSE_WIDTH = {
   desktop: '1280px',
   tablet: '768px',
@@ -16,7 +16,7 @@ export const BUTTON_CIRCLE_SIZE = {
 export const FONT_SIZE = {
   sm: '12px',
   md: '14px',
-  lg: '20px',
+  lg: '24px',
 };
 
 export const COLOR = {
