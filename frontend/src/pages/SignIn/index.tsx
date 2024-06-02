@@ -52,8 +52,8 @@ const SignIn = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
       <div style={{ fontSize: FONT_SIZE.lg, fontWeight: 700, marginTop: '10%' }}>로그인</div>
-      <StyledInput placeholder="ID" onChange={(e) => setId(e.target.value)} />
-      <StyledInput type="password" placeholder="PW" onChange={(e) => setPassword(e.target.value)} />
+      <StyledInput placeholder="아이디" onChange={(e) => setId(e.target.value)} />
+      <StyledInput type="password" placeholder="비밀번호" onChange={(e) => setPassword(e.target.value)} />
       <StyledButton onClick={handleButtonClick}>로그인하기</StyledButton>
       <div style={{ color: COLOR.gray, fontSize: FONT_SIZE.md, marginTop: '20px' }}>
         아직 회원이 아니신가요?{' '}
