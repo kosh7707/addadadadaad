@@ -5,7 +5,6 @@ import dayjs from 'dayjs';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { setFollowedList } from '../../store/followed.slice';
 import { setFollowingList } from '../../store/following.slice';
-import { logIn } from '../../store/auth.slice';
 import { setDiaryList } from '../../store/diaryList.slice';
 
 import UserNavigator from './components/UserNavigator';
@@ -16,7 +15,6 @@ import { MainContentWrapper } from './styled';
 import { DiaryInfo, UserDetailInfo } from '../../types';
 
 import { UserInfoArray, UserInfoLongArray } from '../../mocks/user';
-import { UserAccount } from '../../mocks/user';
 import { DiaryInfoArray } from '../../mocks/diary';
 
 const MainPage = () => {
@@ -47,14 +45,13 @@ const MainPage = () => {
 
   useEffect(() => {
     // TODO: api
-    if (auth.name === '') {
+    if (auth.isAuth) {
       dispatch(setFollowedList(UserInfoArray));
       dispatch(setFollowingList(UserInfoLongArray));
-      dispatch(logIn(UserAccount));
       dispatch(setDiaryList(DiaryInfoArray));
-    }
 
-    setUser(UserAccount);
+      setUser(auth);
+    }
   }, []);
 
   useEffect(() => {

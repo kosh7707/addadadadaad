@@ -49,7 +49,9 @@ const Calendar = ({ selectedDate, handleSelectedDate, user, diaryArray }: Calend
             handleButtonClick={handleSelfClick}
           />
           <div style={{ width: 'calc(100% - 90px)', display: 'flex', flexDirection: 'column' }}>
-            <UserInfoText style={{ fontSize: FONT_SIZE.lg, fontWeight: 'bold' }}>{user.name}</UserInfoText>
+            <UserInfoText style={{ fontSize: FONT_SIZE.lg, fontWeight: 'bold' }}>
+              {user.name === '' ? '로그인하지 않았습니다.' : user.name}
+            </UserInfoText>
             <UserInfoText style={{ fontSize: FONT_SIZE.md, color: COLOR.gray }}>{user.description}</UserInfoText>
           </div>
         </UserContentWrapper>

@@ -10,6 +10,7 @@ export const MainContentWrapper = styled.div`
 
   @media screen and (max-width: ${RESPONSE_WIDTH.tablet}) {
     grid-template-columns: 1fr;
+    padding: 20px;
   }
 `;
 /* end of ./index.tsx */

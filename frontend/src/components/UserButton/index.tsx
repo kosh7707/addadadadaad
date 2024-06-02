@@ -27,7 +27,11 @@ const UserButton = ({
       onClick={() => handleButtonClick(id)}
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}
     >
-      <img src={imageUrl} alt={name} style={{ width: width, height: height, borderRadius: '100%' }} />
+      <img
+        src={imageUrl === '' ? 'images/user.png' : imageUrl}
+        alt={name}
+        style={{ width: width, height: height, borderRadius: '100%' }}
+      />
       {showText && (
         <span
           style={{
