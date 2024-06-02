@@ -35,7 +35,10 @@ const MainPage = () => {
   const handleChangeUserClick = (userId: number) => {
     if (user.id === userId) return;
 
-    if (auth.id === user.id) setUser(auth);
+    if (auth.id === userId) {
+      setUser(auth);
+      return;
+    }
 
     const filtered = following.filter((item) => item.id === userId);
     setUser(filtered[0] ? filtered[0] : { id: -1, name: '', description: '', imageUrl: '' });
