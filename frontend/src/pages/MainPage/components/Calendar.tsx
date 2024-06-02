@@ -38,7 +38,7 @@ const Calendar = ({ selectedDate, handleSelectedDate, user, diaryArray }: Calend
   };
 
   return (
-    <div style={{ padding: '10px', border: '1px solid purple', userSelect: 'none' }}>
+    <div style={{ padding: '10px' }}>
       {user && (
         <UserContentWrapper>
           <UserButton
@@ -46,7 +46,7 @@ const Calendar = ({ selectedDate, handleSelectedDate, user, diaryArray }: Calend
             id={user.id}
             imageUrl={user.imageUrl}
             name={user.name}
-            handleButtonClick={() => handleSelfClick}
+            handleButtonClick={handleSelfClick}
           />
           <div style={{ width: 'calc(100% - 90px)', display: 'flex', flexDirection: 'column' }}>
             <UserInfoText style={{ fontSize: FONT_SIZE.lg, fontWeight: 'bold' }}>{user.name}</UserInfoText>

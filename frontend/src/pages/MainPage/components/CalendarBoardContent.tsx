@@ -4,6 +4,7 @@ import dayjs from 'dayjs';
 
 import { EmojiDiv } from '../styled';
 import { DiaryInfo } from '../../../types';
+import { COLOR, FONT_SIZE } from '../../../constants';
 
 export interface CalendarBoardContentProps {
   selectedDate: string;
@@ -40,11 +41,28 @@ const CalendarBoardContent = ({ selectedDate, handleDateClick, diaryArray }: Cal
   return (
     <>
       {array.map((item, _) => (
-        <div key={item ? item.toString() : `${item}${_}`} onClick={() => handleDateClick(item)}>
+        <div
+          key={item ? item.toString() : `${item}${_}`}
+          onClick={() => handleDateClick(item)}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+        >
           {item && (
             <>
               <HeadEmoji date={item} />
-              <span style={{ cursor: 'pointer' }}>{dayjs(item).date()} </span>
+              <div
+                style={{
+                  width: '16px',
+                  height: '16px',
+                  lineHeight: '18px',
+                  borderRadius: '100%',
+                  cursor: 'pointer',
+                  backgroundColor: `${item === selectedDate ? 'black' : item === dayjs().format('MM/DD/YY') ? COLOR.gray : 'transparent'}`,
+                  color: `${item === selectedDate ? 'white' : 'black'}`,
+                  fontSize: FONT_SIZE.sm,
+                }}
+              >
+                {dayjs(item).date()}{' '}
+              </div>
             </>
           )}
         </div>
