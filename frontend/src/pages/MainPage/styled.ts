@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { COLOR, FONT_SIZE, RESPONSE_WIDTH } from '../../constants';
+import ReactQuill from 'react-quill';
 
 /* start of ./index.tsx */
 export const MainContentWrapper = styled.div`
@@ -61,3 +62,83 @@ export const EmojiDiv = styled.div`
   font-size: ${FONT_SIZE.lg};
 `;
 /* end of components/CalendarBoardContent.tsx */
+
+/* start of components/DiaryContent.tsx */
+export const EmojiDivLg = styled.div`
+  width: 40px;
+  height: 40px;
+  line-height: 46px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: ${COLOR.gray};
+  font-size: 36px;
+`;
+
+export const StyledButton = styled.button`
+  padding: 6px 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: ${COLOR.gray};
+  color: white;
+  font-size: ${FONT_SIZE.lg};
+  cursor: pointer;
+  &:hover {
+    background-color: ${COLOR.dark_gray};
+  }
+`;
+/* end of components/DiaryContent.tsx */
+
+/* start of components/DiaryEdit.tsx */
+export const StyledReactQuill = styled(ReactQuill)`
+  .ql-container {
+    min-height: 360px;
+    border-color: ${COLOR.gray};
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    .ql-editor {
+      height: 340px;
+    }
+  }
+  .ql-toolbar {
+    border-color: ${COLOR.gray};
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+  }
+`;
+
+export const StyledInput = styled.input`
+  flex-grow: 1;
+  padding: 8px;
+  font-size: ${FONT_SIZE.lg};
+  border: 1px solid ${COLOR.gray};
+  border-radius: 10px;
+  outline: none;
+  &::placeholder {
+    color: ${COLOR.gray};
+    font-size: 0.8em;
+    font-style: italic;
+  }
+`;
+/* end of components/DiaryEdit.tsx */
+
+/* start of components/DiaryRead.tsx */
+export const StyledInputDiv = styled.div`
+  flex-grow: 1;
+  padding: 8px;
+  font-size: ${FONT_SIZE.lg};
+  border: 1px solid ${COLOR.gray};
+  border-radius: 10px;
+`;
+
+export const StyledEditorRead = styled.div`
+  width: 100%;
+  height: 380px;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid ${COLOR.gray};
+  li {
+    margin-left: 20px;
+  }
+`;
+/* end of components/DiaryRead.tsx */
