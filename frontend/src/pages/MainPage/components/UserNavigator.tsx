@@ -4,6 +4,7 @@ import UserButton from '../../../components/UserButton';
 import { UserDetailInfo } from '../../../types';
 import { RESPONSE_WIDTH } from '../../../constants';
 import { useEffect, useState } from 'react';
+import { useAppSelector } from '../../../hooks/redux';
 
 export interface UserNavigatorProps {
   currUser: UserDetailInfo;
@@ -14,6 +15,7 @@ export interface UserNavigatorProps {
 
 const UserNavigatorWrapper = styled.div`
   width: 100%;
+  margin-top: 20px;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: repeat(12, 1fr);
@@ -31,6 +33,8 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
   const [userDisplayArray, setUserDisplayArray] = useState<UserDetailInfo[]>([]);
   const [width, setWidth] = useState(window.innerWidth);
 
+  const auth = useAppSelector((state) => state.auth).value;
+
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
@@ -43,9 +47,9 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
   }, []);
 
   useEffect(() => {
-    if (width >= parseInt(RESPONSE_WIDTH.desktop, 10)) setUserDisplayArray(userArray.slice(0, 11));
-    else if (width >= parseInt(RESPONSE_WIDTH.tablet, 10)) setUserDisplayArray(userArray.slice(0, 9));
-    else setUserDisplayArray(userArray.slice(0, 5));
+    if (width >= parseInt(RESPONSE_WIDTH.desktop, 10)) setUserDisplayArray(userArray.slice(0, 10));
+    else if (width >= parseInt(RESPONSE_WIDTH.tablet, 10)) setUserDisplayArray(userArray.slice(0, 8));
+    else setUserDisplayArray(userArray.slice(0, 4));
   }, [width, userArray]);
 
   const handlePlusButtonClick = () => {
@@ -55,6 +59,15 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
 
   return (
     <UserNavigatorWrapper>
+      <UserButton
+        id={auth.id}
+        imageUrl={auth.imageUrl}
+        name={auth.name}
+        size={size}
+        handleButtonClick={() => handleUserClick(auth.id)}
+        showText
+        isEmphasis={currUser.id === auth.id}
+      />
       {userDisplayArray.map((item) => (
         <UserButton
           key={item.id}

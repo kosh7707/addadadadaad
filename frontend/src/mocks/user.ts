@@ -1,7 +1,6 @@
 import { UserDetailInfo } from '../types';
 
 export const UserInfoArray: UserDetailInfo[] = [
-  { id: 1, imageUrl: 'images/user.png', name: 'me', description: 'userDescription' },
   { id: 2, imageUrl: 'images/user.png', name: 'user2', description: 'description2' },
   { id: 3, imageUrl: 'images/user.png', name: 'user3', description: 'description3' },
   { id: 4, imageUrl: 'images/user.png', name: 'user4', description: 'description4' },
@@ -10,7 +9,6 @@ export const UserInfoArray: UserDetailInfo[] = [
 ];
 
 export const UserInfoLongArray: UserDetailInfo[] = [
-  { id: 1, imageUrl: 'images/user.png', name: 'me', description: 'userDescription' },
   { id: 2, imageUrl: 'images/user.png', name: 'user2', description: 'description2' },
   { id: 3, imageUrl: 'images/user.png', name: 'user3', description: 'description3' },
   { id: 4, imageUrl: 'images/user.png', name: 'user4', description: 'description4' },

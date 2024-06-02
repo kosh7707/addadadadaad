@@ -6,7 +6,7 @@ import './global.css';
 
 export const PageWrapper = styled.div`
   width: 100vw;
-  height: calc(100vh - ${HEADER_HEIGHT});
+  min-height: calc(100vh - ${HEADER_HEIGHT});
   overflow: hidden;
   margin-top: ${HEADER_HEIGHT};
 `;
