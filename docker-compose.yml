@@ -1,0 +1,33 @@
+version: '3'
+
+services:
+    db:
+          image: postgres:15.5
+          container_name: my-postgres
+          restart: always
+          environment:
+            POSTGRES_DB: cloudtermproject
+            POSTGRES_USER: asdf1234
+            POSTGRES_PASSWORD: root
+          volumes:
+              - ./backend/sql_schema.sql:/docker-entrypoint-initdb.d/sql_schema.sql
+              - ./backend/sql_usersetting.sql:/docker-entrypoint-initdb.d/sql_usersetting.sql
+          ports:
+              - "5432:5432"
+    backend:
+          build: ./backend
+          container_name: my-backend
+          restart: always
+          ports:
+              - "5000:5000"
+          depends_on:
+              - db
+          env_file:
+              - ./backend/.env
+
+    frontend:
+      build: ./frontend
+      container_name: my-frontend
+      restart: always
+      ports:
+          - "3000:3000"
