@@ -9,7 +9,7 @@ module.exports = () => {
 
     passport.deserializeUser(async (id, done) => {
         try {
-            const result = await db.query('select * from accounts WHERE account_id = $1', [id]);
+            const result = await db.query('select * from accounts WHERE id = $1', [id]);
             if (result.rows.length === 1) {
                 const user = result.rows[0];
                 done(null, user);

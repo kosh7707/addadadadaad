@@ -3,12 +3,12 @@ const passport = require('passport');
 const db = require(process.cwd() + '/database');
 
 exports.register = async (req, res, next) => {
-    const {user_id, user_pw} = req.body;
+    const {user_id, user_pw, description} = req.body;
     try {
         const result = await db.query(`select * from accounts where user_id=$1`, [user_id]);
         if (result.rows.length === 0) {
             const hash = await bcrypt.hash(user_pw, 12);
-            await db.query(`insert into accounts(user_id, user_pw) values ($1, $2)`, [user_id, hash]);
+            await db.query(`insert into accounts(user_id, user_pw, description) values ($1, $2, $3)`, [user_id, hash, description]);
             return res.status(200).json({ message: `회원가입 성공` });
         }
         else return res.status(400).json({ message: `유저 아이디 중복` });
@@ -32,8 +32,15 @@ exports.login = (req, res, next) => {
                 console.error(loginErr);
                 return next(loginErr);
             }
-            await db.query(`update accounts set last_login = current_timestamp where account_id = $1`, [user.account_id]);
-            return res.status(200).json({ message: `로그인 성공` });
+            await db.query(`update accounts set last_login = current_timestamp where id = $1`, [user.id]);
+            return res.status(200).json({
+                message: "로그인 성공",
+                value: {
+                    user_id: user.user_id,
+                    name: user.user_id,
+                    description: user.description
+                }
+            });
         });
     }) (req, res, next);
 };

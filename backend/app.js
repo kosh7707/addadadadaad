@@ -27,10 +27,12 @@ app.use(passport.session());
 
 const indexRouter = require('./routes');
 const authRouter = require('./routes/auth');
-const followRouter = require(`./routes/follow.js`);
+const followRouter = require(`./routes/follow`);
+const diaryRouter = require(`./routes/diary`);
 app.use('/', indexRouter);
 app.use('/auth', authRouter);
 app.use(`/follow`, followRouter);
+app.use(`/diary`, diaryRouter);
 
 app.use((req, res, next) => {
     const err = new Error(`${req.method} ${req.url} 라우터가 없습니다.`);

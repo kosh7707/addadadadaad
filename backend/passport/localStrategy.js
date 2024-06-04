@@ -13,7 +13,7 @@ module.exports = () => {
             const result = await db.query(`select * from accounts where user_id = $1`, [user_id]);
             if (result.rows.length === 1) {
                 const user = result.rows[0];
-                const comp = await bcrypt.compare(user_pw, user.user_pw);
+                const comp = bcrypt.compare(user_pw, user.user_pw);
                 if (comp) {
                     done(null, user);
                 } else {
