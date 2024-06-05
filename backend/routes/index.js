@@ -6,12 +6,7 @@ require("dotenv").config();
 
 router.get("/", async (req, res, next) => {
     try {
-        if (req.isAuthenticated()) {
-            res.send("is Logged in");
-        }
-        else {
-            res.send("is not Logged in");
-        }
+        return res.status(403).json({ message: `x` });
     } catch (err) {
         console.error(err);
         next(err);

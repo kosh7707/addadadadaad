@@ -3,7 +3,7 @@ const passport = require('passport');
 const db = require(process.cwd() + '/database');
 
 exports.register = async (req, res, next) => {
-    const {user_id, user_pw, description} = req.body;
+    const { user_id, user_pw, description } = req.body;
     try {
         const result = await db.query(`select * from accounts where user_id=$1`, [user_id]);
         if (result.rows.length === 0) {
@@ -37,7 +37,6 @@ exports.login = (req, res, next) => {
                 message: "로그인 성공",
                 value: {
                     user_id: user.user_id,
-                    name: user.user_id,
                     description: user.description
                 }
             });

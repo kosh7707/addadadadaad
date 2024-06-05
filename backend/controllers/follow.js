@@ -57,13 +57,13 @@ exports.getFollowerList = async (req, res, next) => {
                 const { rows } = await db.query(`select user_id, description from accounts where id = any($1::int[])`, [followee_ids]);
                 return res.status(200).json({
                     code: 200,
-                    message: "성공",
+                    message: "팔로워 조회 성공",
                     value: rows
                 });
             }
             else return res.status(200).json({
                 code: 200,
-                message: "성공",
+                message: "팔로워 조회 성공",
                 value: []
             });
         }
@@ -86,13 +86,13 @@ exports.getFollowingList = async (req, res, next) => {
                 const { rows } = await db.query(`select user_id, description from accounts where id = any($1::int[])`, [follower_ids]);
                 return res.status(200).json({
                     code: 200,
-                    message: "성공",
+                    message: "팔로잉 조회 성공",
                     value: rows
                 });
             }
             else return res.status(200).json({
                 code: 200,
-                message: "성공",
+                message: "팔로잉 조회 성공",
                 value: []
             });
         }

@@ -12,10 +12,11 @@ drop table if exists diary cascade;
 create table diary (
     id              serial primary key,
     user_account_id int references accounts(id),
-    date            timestamp default current_timestamp,
+    date            DATE,
     emoji           varchar(20),
     title           varchar(255),
-    content         text
+    content         text,
+    unique (user_account_id, date)
 );
 
 drop table if exists follow cascade;

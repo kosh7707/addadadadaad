@@ -4,7 +4,7 @@ const db = require(process.cwd() + '/database');
 
 module.exports = () => {
     passport.serializeUser((user, done) => {
-        done(null, user.account_id);
+        done(null, user.id);
     });
 
     passport.deserializeUser(async (id, done) => {
