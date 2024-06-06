@@ -1,7 +1,7 @@
 const pg = require('pg');
 
 const pool = new pg.Pool({
-    host: 'localhost', 
+    host: 'db', 
     user: 'asdf1234',
     password: 'root',
     database: 'cloudtermproject',
