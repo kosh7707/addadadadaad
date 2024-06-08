@@ -74,11 +74,6 @@ const MainPage = () => {
           dispatch(setFollowedList(tmp));
         }
       });
-
-      // TODO: dispatch 삭제하기.
-      dispatch(setDiaryList(DiaryInfoArray));
-      dispatch(setFollowingList(UserInfoArray));
-      dispatch(setFollowedList(UserInfoLongArray));
       setUser(auth);
     }
   }, []);

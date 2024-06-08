@@ -21,12 +21,6 @@ const Header = () => {
   const navigator = useNavigate();
 
   const handleSignOutClick = () => {
-    // TODO: api만 남기기
-    dispatch(logOut());
-    dispatch(resetDiaryList());
-    dispatch(resetFollowedList());
-    dispatch(resetFollowingList());
-    navigator('/');
     signOut().then((res) => {
       if (res.status === 200) {
         dispatch(logOut());
