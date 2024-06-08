@@ -14,7 +14,17 @@ exports.writeDiary = async(req, res, next) => {
                             on conflict (user_account_id, date)
                             do update set emoji = excluded.emoji, title = excluded.title, content = excluded.content`,
                             [user_account_id, save_date, emoji, title, content]);
-            return res.status(200).json({message: `다이어리 작성 성공`});
+
+            const query = `select id as diary_id, TO_CHAR(date, 'MM/DD/YY') AS date, emoji, title, content
+                                  from diary 
+                                  where user_account_id = $1
+                                    and date = $2`;
+            const { rows } = await db.query(query, [user_account_id, save_date]);
+
+            return res.status(200).json({
+                message: `다이어리 작성 성공`,
+                values: rows
+            });
         }
         else return res.status(400).json({message: `다이어리 작성 실패`});
     } catch (err) {
