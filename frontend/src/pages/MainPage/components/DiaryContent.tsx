@@ -28,11 +28,11 @@ const DiaryContent = ({ diary_id, user, date, emoji, title, content }: DiaryInfo
         if (res.status === 200) {
           dispatch(
             modifyDiary({
-              diary_id: res.data.value[0].diary_id,
-              date: res.data.value[0].date,
-              title: res.data.value[0].title,
-              emoji: res.data.value[0].emoji,
-              content: res.data.value[0].content,
+              diary_id: res.data.values[0].diary_id,
+              date: res.data.values[0].date,
+              title: res.data.values[0].title,
+              emoji: res.data.values[0].emoji,
+              content: res.data.values[0].content,
             }),
           );
           toast.info('다이어리을 수정하였습니다.');
