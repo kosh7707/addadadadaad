@@ -25,7 +25,7 @@ export const Button = styled.button`
   border-radius: 10px;
   font-size: ${FONT_SIZE.lg};
   cursor: pointer;
-  box-shadow: 3px 3px 1px 1px ${COLOR.gray};
+  box-shadow: 3px 3px 2px 2px rgba(0, 0, 0, 0.1);
   &:hover {
     background-color: ${COLOR.dark_gray};
     color: white;
