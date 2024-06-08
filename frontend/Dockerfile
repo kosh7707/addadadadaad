@@ -7,7 +7,7 @@ COPY package*.json ./
 COPY . .
 
 RUN npm install
-
+RUN npm install axios
 RUN npm run build
 
 FROM nginx:alpine
