@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { modifyDiary } from '../../../store/diaryList.slice';
@@ -34,11 +35,12 @@ const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
               content: res.data.value.content,
             }),
           );
+          toast.info('다이어리을 수정하였습니다.');
         } else if (res.status === 400) {
-          alert('다이어리 작성에 실패했습니다.');
+          toast.error('다이어리 작성에 실패했습니다.');
         } else if (res.status === 403) {
         } else {
-          alert('관리자에게 문의해주세요.');
+          toast.warning('관리자에게 문의해주세요.');
         }
       });
     }

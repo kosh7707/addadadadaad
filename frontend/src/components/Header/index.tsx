@@ -1,4 +1,5 @@
 import { VscSignIn, VscSignOut } from 'react-icons/vsc';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 import { logOut } from '../../store/auth.slice';
@@ -28,9 +29,10 @@ const Header = () => {
         dispatch(resetDiaryList());
         dispatch(resetFollowedList());
         dispatch(resetFollowingList());
+        toast.info('로그아웃 되었습니다.');
       } else if (res.status === 403) {
       } else {
-        alert('관리자에게 문의해주세요.');
+        toast.warning('관리자에게 문의해주세요.');
       }
     });
   };

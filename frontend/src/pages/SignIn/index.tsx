@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch } from '../../hooks/redux';
 import { logIn } from '../../store/auth.slice';
@@ -16,8 +17,6 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    if (userId === '') alert('아이디를 입력해주세요.');
-    if (userPw === '') alert('비밀번호를 입력해주세요.');
     if (userId === '' || userPw === '') return 0;
 
     signIn({ userId, userPw }).then((res) => {
@@ -33,9 +32,9 @@ const SignIn = () => {
         );
         navigate('/');
       } else if (res.status === 400) {
-        alert(res.data.message);
+        toast.error(res.data.message);
       } else {
-        alert('관리자에게 문의해주세요.');
+        toast.warning('관리자에게 문의해주세요.');
       }
     });
   };

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import { signUp } from '../../api/auth';
 import { MainButton, MdInput } from '../../styled';
@@ -13,19 +14,16 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    if (userId === '') alert('사용할 아이디를 입력해주세요.');
-    if (userPw === '') alert('사용할 비밀번호를 입력해주세요.');
     if (userId === '' || userPw === '') return 0;
 
     signUp({ userId, userPw, description }).then((res: any) => {
-      console.log(res);
       if (res.status === 200) {
-        alert('회원가입이 완료되었습니다.');
+        toast.info('회원가입이 완료되었습니다.');
         navigate('/sign-in');
       } else if (res.status === 400 && res.data.message === '유저 아이디 중복') {
-        alert('중복된 id입니다. 다른 id로 가입해주세요.');
+        toast.error('중복된 id입니다.');
       } else {
-        alert('관리자에게 문의해주세요.');
+        toast.warning('관리자에게 문의해주세요.');
       }
     });
   };

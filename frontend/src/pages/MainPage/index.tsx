@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import dayjs from 'dayjs';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -52,11 +53,6 @@ const MainPage = () => {
           console.log('getDiary:53 ', res);
           if (res.status === 200) {
             dispatch(setDiaryList(res.data.value));
-          } else if (res.status === 400) {
-            alert('다이어리 조회에 실패했습니다.');
-          } else if (res.status === 403) {
-          } else {
-            alert('관리자에게 문의해주세요.');
           }
         },
       );
@@ -67,11 +63,6 @@ const MainPage = () => {
             return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
           });
           dispatch(setFollowingList(tmp));
-        } else if (res.status === 400) {
-          alert('팔로잉 조회에 실패했습니다.');
-        } else if (res.status === 403) {
-        } else {
-          alert('관리자에게 문의해주세요.');
         }
       });
       getFollowedList({ userId: auth.name }).then((res: any) => {
@@ -81,15 +72,11 @@ const MainPage = () => {
             return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
           });
           dispatch(setFollowedList(tmp));
-        } else if (res.status === 400) {
-          alert('팔로워 조회에 실패했습니다.');
-        } else if (res.status === 403) {
-        } else {
-          alert('관리자에게 문의해주세요.');
         }
       });
 
-      dispatch(setDiaryList(diaryList));
+      // TODO: dispatch 삭제하기.
+      dispatch(setDiaryList(DiaryInfoArray));
       dispatch(setFollowingList(UserInfoArray));
       dispatch(setFollowedList(UserInfoLongArray));
       setUser(auth);
@@ -113,11 +100,6 @@ const MainPage = () => {
         console.log('getDiary:86 ', res);
         if (res.status === 200) {
           dispatch(setDiaryList(res.data.value));
-        } else if (res.status === 400) {
-          alert('다이어리 조회에 실패했습니다.');
-        } else if (res.status === 403) {
-        } else {
-          alert('관리자에게 문의해주세요.');
         }
       },
     );
