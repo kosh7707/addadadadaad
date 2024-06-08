@@ -40,7 +40,7 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
   }, []);
 
   useEffect(() => {
-    if (userArray.length === 0) return;
+    if (!userArray) return;
     if (width >= parseInt(RESPONSE_WIDTH.desktop, 10)) setUserDisplayArray(userArray.slice(0, 10));
     else if (width >= parseInt(RESPONSE_WIDTH.tablet, 10)) setUserDisplayArray(userArray.slice(0, 8));
     else setUserDisplayArray(userArray.slice(0, 4));
