@@ -16,7 +16,8 @@ export const BUTTON_CIRCLE_SIZE = {
 export const FONT_SIZE = {
   sm: '12px',
   md: '14px',
-  lg: '24px',
+  lg: '16px',
+  xl: '24px',
 };
 
 export const COLOR = {

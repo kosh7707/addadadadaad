@@ -20,7 +20,7 @@ const UserButton = ({
   const width = size === 'sm' ? BUTTON_CIRCLE_SIZE.sm : size === 'md' ? BUTTON_CIRCLE_SIZE.md : BUTTON_CIRCLE_SIZE.lg;
   const height = size === 'sm' ? BUTTON_CIRCLE_SIZE.sm : size === 'md' ? BUTTON_CIRCLE_SIZE.md : BUTTON_CIRCLE_SIZE.lg;
 
-  const font_size = size === 'sm' ? FONT_SIZE.sm : size === 'md' ? FONT_SIZE.md : FONT_SIZE.lg;
+  const font_size = size === 'sm' ? FONT_SIZE.sm : size === 'md' ? FONT_SIZE.md : FONT_SIZE.xl;
 
   return (
     <div

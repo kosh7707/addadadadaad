@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import EmojiPicker from 'emoji-picker-react';
 
-import { EmojiDivLg, StyledInput, StyledReactQuill } from '../styled';
+import { EmojiDivLg, StyledReactQuill } from '../styled';
+import { XlInput } from '../../../styled';
 
 export interface DiaryEditProps {
   title: string;
@@ -13,18 +14,13 @@ export interface DiaryEditProps {
 }
 
 const DiaryEdit = ({ title, handleTitle, emoji, handleEmoji, content, handleContent }: DiaryEditProps) => {
-  // const [dTitle, setTitle] = useState<string>(title);
-  // const [dEmoji, setEmoji] = useState<string>(emoji);
-
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setTitle(e.target.value);
     handleTitle(e.target.value);
   };
 
   const handleEmojiChange = (e: any) => {
-    // setEmoji(e.emoji);
     handleEmoji(e.emoji);
     setIsOpen(false);
   };
@@ -36,7 +32,12 @@ const DiaryEdit = ({ title, handleTitle, emoji, handleEmoji, content, handleCont
   return (
     <div style={{ padding: '10px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-        <StyledInput onChange={handleTitleChange} placeholder="제목을 입력해주세요." value={title} />
+        <XlInput
+          style={{ flexGrow: '1' }}
+          onChange={handleTitleChange}
+          placeholder="제목을 입력해주세요."
+          value={title}
+        />
         <div style={{ position: 'relative', width: 'fit-content', height: 'fit-content' }}>
           <EmojiDivLg onClick={() => setIsOpen(true)}>{emoji}</EmojiDivLg>
           <EmojiPicker

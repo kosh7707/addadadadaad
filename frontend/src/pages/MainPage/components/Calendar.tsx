@@ -4,11 +4,10 @@ import { VscTriangleLeft, VscTriangleRight } from 'react-icons/vsc';
 
 import CalendarBoardContent from './CalendarBoardContent';
 import UserButton from '../../../components/UserButton';
-import { DiaryInfo, UserDetailInfo } from '../../../types';
-
-import { COLOR, FONT_SIZE } from '../../../constants';
 
 import { UserInfoText, UserContentWrapper, CalendarTitle, CalendarBoard } from '../styled';
+import { DiaryInfo, UserDetailInfo } from '../../../types';
+import { COLOR, FONT_SIZE } from '../../../constants';
 
 const weekHead = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -49,7 +48,7 @@ const Calendar = ({ selectedDate, handleSelectedDate, user, diaryArray }: Calend
             handleButtonClick={handleSelfClick}
           />
           <div style={{ width: 'calc(100% - 90px)', display: 'flex', flexDirection: 'column' }}>
-            <UserInfoText style={{ fontSize: FONT_SIZE.lg, fontWeight: 'bold' }}>
+            <UserInfoText style={{ fontSize: FONT_SIZE.xl, fontWeight: 'bold' }}>
               {user.name === '' ? '로그인하지 않았습니다.' : user.name}
             </UserInfoText>
             <UserInfoText style={{ fontSize: FONT_SIZE.md, color: COLOR.gray }}>{user.description}</UserInfoText>

@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
 import dayjs from 'dayjs';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -17,6 +18,7 @@ import { DiaryInfo, UserDetailInfo } from '../../types';
 import { UserInfoArray, UserInfoLongArray } from '../../mocks/user';
 import { DiaryInfoArray } from '../../mocks/diary';
 import { getDiary } from '../../api/diary';
+import { getFollowedList, getFollowingList } from '../../api/follow';
 
 const MainPage = () => {
   const [user, setUser] = useState<UserDetailInfo>({ id: -1, name: '', description: '', imageUrl: '' });
@@ -45,25 +47,38 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    // TODO: api
-    console.log(document.cookie);
     if (auth.isAuth) {
       getDiary({ userId: auth.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
         (res: any) => {
+          console.log('getDiary:53 ', res);
           if (res.status === 200) {
             dispatch(setDiaryList(res.data.value));
-          } else if (res.status === 400) {
-            alert('다이어리 조회에 실패했습니다.');
-          } else if (res.status === 403) {
-          } else {
-            alert('관리자에게 문의해주세요.');
           }
         },
       );
-      // dispatch(setFollowedList(UserInfoArray));
-      // dispatch(setFollowingList(UserInfoLongArray));
-      // dispatch(setDiaryList(DiaryInfoArray));
+      getFollowingList({ userId: auth.name }).then((res: any) => {
+        console.log('getFollowingList:64 ', res);
+        if (res.status === 200) {
+          const tmp = res.data.value.forEach((item: { user_id: string; description: string }) => {
+            return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+          });
+          dispatch(setFollowingList(tmp));
+        }
+      });
+      getFollowedList({ userId: auth.name }).then((res: any) => {
+        console.log('getFollowedList:79 ', res);
+        if (res.status === 200) {
+          const tmp = res.data.value.forEach((item: { user_id: string; description: string }) => {
+            return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+          });
+          dispatch(setFollowedList(tmp));
+        }
+      });
 
+      // TODO: dispatch 삭제하기.
+      dispatch(setDiaryList(DiaryInfoArray));
+      dispatch(setFollowingList(UserInfoArray));
+      dispatch(setFollowedList(UserInfoLongArray));
       setUser(auth);
     }
   }, []);
@@ -82,13 +97,9 @@ const MainPage = () => {
   useEffect(() => {
     getDiary({ userId: user.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
       (res: any) => {
+        console.log('getDiary:86 ', res);
         if (res.status === 200) {
           dispatch(setDiaryList(res.data.value));
-        } else if (res.status === 400) {
-          alert('다이어리 조회에 실패했습니다.');
-        } else if (res.status === 403) {
-        } else {
-          alert('관리자에게 문의해주세요.');
         }
       },
     );

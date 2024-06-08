@@ -15,3 +15,30 @@ export const getDiary = async ({ userId, year, month }: { userId: string; year: 
     return error.response;
   }
 };
+
+export const fetchDiary = async ({
+  userId,
+  date,
+  emoji,
+  title,
+  content,
+}: {
+  userId: string;
+  date: string;
+  emoji: string;
+  title: string;
+  content: string;
+}) => {
+  try {
+    const response = await axios.post('/api/diary/writediary', {
+      user_id: userId,
+      date,
+      emoji,
+      title,
+      content,
+    });
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+};

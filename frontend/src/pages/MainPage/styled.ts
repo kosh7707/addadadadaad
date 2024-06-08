@@ -60,7 +60,7 @@ export const EmojiDiv = styled.div`
   cursor: pointer;
   border-radius: 100%;
   background-color: ${COLOR.gray};
-  font-size: ${FONT_SIZE.lg};
+  font-size: ${FONT_SIZE.xl};
 `;
 /* end of components/CalendarBoardContent.tsx */
 
@@ -74,19 +74,6 @@ export const EmojiDivLg = styled.div`
   border-radius: 100%;
   background-color: ${COLOR.gray};
   font-size: 36px;
-`;
-
-export const StyledButton = styled.button`
-  padding: 6px 10px;
-  border: none;
-  border-radius: 10px;
-  background-color: ${COLOR.gray};
-  color: white;
-  font-size: ${FONT_SIZE.lg};
-  cursor: pointer;
-  &:hover {
-    background-color: ${COLOR.dark_gray};
-  }
 `;
 /* end of components/DiaryContent.tsx */
 
@@ -107,34 +94,12 @@ export const StyledReactQuill = styled(ReactQuill)`
     border-top-right-radius: 10px;
   }
 `;
-
-export const StyledInput = styled.input`
-  flex-grow: 1;
-  padding: 8px;
-  font-size: ${FONT_SIZE.lg};
-  border: 1px solid ${COLOR.gray};
-  border-radius: 10px;
-  outline: none;
-  &::placeholder {
-    color: ${COLOR.gray};
-    font-size: 0.8em;
-    font-style: italic;
-  }
-`;
 /* end of components/DiaryEdit.tsx */
 
 /* start of components/DiaryRead.tsx */
-export const StyledInputDiv = styled.div`
-  flex-grow: 1;
-  padding: 8px;
-  font-size: ${FONT_SIZE.lg};
-  border: 1px solid ${COLOR.gray};
-  border-radius: 10px;
-`;
-
 export const StyledEditorRead = styled.div`
   width: 100%;
-  height: 380px;
+  height: 402px;
   padding: 20px;
   border-radius: 10px;
   border: 1px solid ${COLOR.gray};
@@ -143,3 +108,21 @@ export const StyledEditorRead = styled.div`
   }
 `;
 /* end of components/DiaryRead.tsx */
+
+/* start of components/UserNavigator */
+export const UserNavigatorWrapper = styled.div`
+  width: 100%;
+  margin-top: 20px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: repeat(12, 1fr);
+  row-gap: 10px;
+
+  @media screen and (max-width: ${RESPONSE_WIDTH.desktop}) {
+    grid-template-columns: repeat(10, 1fr);
+  }
+  @media screen and (max-width: ${RESPONSE_WIDTH.tablet}) {
+    grid-template-columns: repeat(6, 1fr);
+  }
+`;
+/* start of components/UserNavigator */
