@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import dayjs from 'dayjs';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -15,8 +14,6 @@ import DiaryContent from './components/DiaryContent';
 import { MainContentWrapper } from './styled';
 import { DiaryInfo, UserDetailInfo } from '../../types';
 
-import { UserInfoArray, UserInfoLongArray } from '../../mocks/user';
-import { DiaryInfoArray } from '../../mocks/diary';
 import { getDiary } from '../../api/diary';
 import { getFollowedList, getFollowingList } from '../../api/follow';
 
