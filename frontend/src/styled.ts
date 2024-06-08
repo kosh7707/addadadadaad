@@ -43,7 +43,7 @@ export const SubButton = styled(Button)`
 `;
 
 export const Input = styled.input`
-  width: 300px;
+  width: 280px;
   padding: 8px;
   border: 1px solid ${COLOR.gray};
   border-radius: 10px;

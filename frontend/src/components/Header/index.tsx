@@ -12,23 +12,22 @@ import { signOut } from '../../api/auth';
 import { A } from '../../styled';
 import { HeaderLayout, HeaderWrapper } from './styled';
 import { FONT_SIZE, HEADER_HEIGHT } from '../../constants';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state) => state.auth).value;
 
+  const navigator = useNavigate();
+
   const handleSignOutClick = () => {
-    // TODO: api만 남기기
-    dispatch(logOut());
-    dispatch(resetDiaryList());
-    dispatch(resetFollowedList());
-    dispatch(resetFollowingList());
     signOut().then((res) => {
       if (res.status === 200) {
         dispatch(logOut());
         dispatch(resetDiaryList());
         dispatch(resetFollowedList());
         dispatch(resetFollowingList());
+        navigator('/');
         toast.info('로그아웃 되었습니다.');
       } else if (res.status === 403) {
       } else {

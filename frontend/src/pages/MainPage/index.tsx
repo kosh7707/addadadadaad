@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import dayjs from 'dayjs';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
@@ -15,8 +14,6 @@ import DiaryContent from './components/DiaryContent';
 import { MainContentWrapper } from './styled';
 import { DiaryInfo, UserDetailInfo } from '../../types';
 
-import { UserInfoArray, UserInfoLongArray } from '../../mocks/user';
-import { DiaryInfoArray } from '../../mocks/diary';
 import { getDiary } from '../../api/diary';
 import { getFollowedList, getFollowingList } from '../../api/follow';
 
@@ -74,11 +71,6 @@ const MainPage = () => {
           dispatch(setFollowedList(tmp));
         }
       });
-
-      // TODO: dispatch 삭제하기.
-      dispatch(setDiaryList(DiaryInfoArray));
-      dispatch(setFollowingList(UserInfoArray));
-      dispatch(setFollowedList(UserInfoLongArray));
       setUser(auth);
     }
   }, []);
@@ -112,6 +104,7 @@ const MainPage = () => {
         <Calendar selectedDate={selectedDate} handleSelectedDate={setSelectedDate} user={user} diaryArray={diaryList} />
         <DiaryContent
           diary_id={diaryInfo.diary_id}
+          user={user.name}
           date={diaryInfo.date}
           title={diaryInfo.title}
           emoji={diaryInfo.emoji}

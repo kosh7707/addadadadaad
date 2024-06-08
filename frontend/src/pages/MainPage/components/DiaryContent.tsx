@@ -12,7 +12,7 @@ import { MainButton } from '../../../styled';
 import { DiaryInfo } from '../../../types';
 import { FONT_SIZE } from '../../../constants';
 
-const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
+const DiaryContent = ({ diary_id, user, date, emoji, title, content }: DiaryInfo & { user: string }) => {
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
   const [dTitle, setTitle] = useState<string>(title);
   const [dEmoji, setEmoji] = useState<string>(emoji);
@@ -67,9 +67,12 @@ const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
           handleContent={setContent}
         />
       )}
-      <MainButton style={{ float: 'right', boxShadow: 'none', fontSize: FONT_SIZE.xl }} onClick={handleButtonClick}>
-        {isReadOnly ? '수정' : '저장'}
-      </MainButton>
+
+      {user === auth.name && (
+        <MainButton style={{ float: 'right', boxShadow: 'none', fontSize: FONT_SIZE.xl }} onClick={handleButtonClick}>
+          {isReadOnly ? '수정' : '저장'}
+        </MainButton>
+      )}
     </div>
   );
 };
