@@ -63,7 +63,7 @@ const Follow = () => {
 
   return (
     <>
-      <div style={{ marginTop: '40px' }}>
+      <div style={{ marginTop: '20px' }}>
         <S.SearchWrapper>
           <MdInput
             value={searchUserName}
