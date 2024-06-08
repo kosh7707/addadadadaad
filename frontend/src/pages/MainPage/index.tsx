@@ -16,6 +16,7 @@ import { DiaryInfo, UserDetailInfo } from '../../types';
 
 import { UserInfoArray, UserInfoLongArray } from '../../mocks/user';
 import { DiaryInfoArray } from '../../mocks/diary';
+import { getDiary } from '../../api/diary';
 
 const MainPage = () => {
   const [user, setUser] = useState<UserDetailInfo>({ id: -1, name: '', description: '', imageUrl: '' });
@@ -23,7 +24,7 @@ const MainPage = () => {
   const [selectedDate, setSelectedDate] = useState<string>(dayjs().format('MM/DD/YY'));
   const [selectedMonth, setSelectedMonth] = useState<number>(dayjs().month());
 
-  const [diaryInfo, setDiaryInfo] = useState<DiaryInfo>({ id: 0, date: '', title: '', emoji: '', content: '' });
+  const [diaryInfo, setDiaryInfo] = useState<DiaryInfo>({ diary_id: 0, date: '', title: '', emoji: '', content: '' });
 
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state) => state.auth).value;
@@ -43,16 +44,29 @@ const MainPage = () => {
     setSelectedDate(dayjs().format('MM/DD/YY'));
   };
 
-  // useEffect(() => {
-  //   // TODO: api
-  //   if (auth.isAuth) {
-  //     dispatch(setFollowedList(UserInfoArray));
-  //     dispatch(setFollowingList(UserInfoLongArray));
-  //     dispatch(setDiaryList(DiaryInfoArray));
+  useEffect(() => {
+    // TODO: api
+    console.log(document.cookie);
+    if (auth.isAuth) {
+      getDiary({ userId: auth.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
+        (res: any) => {
+          if (res.status === 200) {
+            dispatch(setDiaryList(res.data.value));
+          } else if (res.status === 400) {
+            alert('다이어리 조회에 실패했습니다.');
+          } else if (res.status === 403) {
+          } else {
+            alert('관리자에게 문의해주세요.');
+          }
+        },
+      );
+      // dispatch(setFollowedList(UserInfoArray));
+      // dispatch(setFollowingList(UserInfoLongArray));
+      // dispatch(setDiaryList(DiaryInfoArray));
 
-  //     setUser(auth);
-  //   }
-  // }, []);
+      setUser(auth);
+    }
+  }, []);
 
   useEffect(() => {
     if (dayjs(selectedDate).month() === selectedMonth) return;
@@ -62,11 +76,22 @@ const MainPage = () => {
   useEffect(() => {
     const filtered = diaryList.filter((item) => item.date === selectedDate);
     if (filtered.length !== 0) setDiaryInfo(filtered[0]);
-    else setDiaryInfo({ id: -1, date: selectedDate, title: '', emoji: '', content: '' });
+    else setDiaryInfo({ diary_id: -1, date: selectedDate, title: '', emoji: '', content: '' });
   }, [selectedDate, diaryList]);
 
   useEffect(() => {
-    // TODO: 해당 달의 diary list api 호출. & diaryList 재설정.
+    getDiary({ userId: user.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
+      (res: any) => {
+        if (res.status === 200) {
+          dispatch(setDiaryList(res.data.value));
+        } else if (res.status === 400) {
+          alert('다이어리 조회에 실패했습니다.');
+        } else if (res.status === 403) {
+        } else {
+          alert('관리자에게 문의해주세요.');
+        }
+      },
+    );
   }, [user, selectedMonth]);
 
   return (
@@ -75,7 +100,7 @@ const MainPage = () => {
       <MainContentWrapper>
         <Calendar selectedDate={selectedDate} handleSelectedDate={setSelectedDate} user={user} diaryArray={diaryList} />
         <DiaryContent
-          id={diaryInfo.id}
+          diary_id={diaryInfo.diary_id}
           date={diaryInfo.date}
           title={diaryInfo.title}
           emoji={diaryInfo.emoji}

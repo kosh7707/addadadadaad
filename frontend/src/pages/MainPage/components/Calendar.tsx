@@ -59,7 +59,7 @@ const Calendar = ({ selectedDate, handleSelectedDate, user, diaryArray }: Calend
       <CalendarTitle>
         <div>
           <span style={{ marginRight: '10px' }}>
-            {dayjs(selectedDate).year()}년 {dayjs(selectedDate).month()}월
+            {dayjs(selectedDate).year()}년 {dayjs(selectedDate).month() + 1}월
           </span>
           <span>😀 {diaryArray?.length}</span>
         </div>
