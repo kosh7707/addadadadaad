@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import { VscChevronLeft, VscSettings } from 'react-icons/vsc';
+import { toast } from 'react-toastify';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
@@ -10,6 +11,8 @@ import * as S from './styled';
 import { UserDetailInfo } from '../../types';
 import { BUTTON_CIRCLE_SIZE, FONT_SIZE } from '../../constants';
 import { MainButton, MdInput } from '../../styled';
+import { fetchFollow, fetchUnfollow, getFollowingList } from '../../api/follow';
+import { setFollowingList } from '../../store/following.slice';
 
 const Follow = () => {
   const [isFollowed, setIsFollowed] = useState<boolean>(false);
@@ -25,6 +28,7 @@ const Follow = () => {
 
   const dispatch = useAppDispatch();
 
+  const auth = useAppSelector((state) => state.auth).value;
   const following = useAppSelector((state) => state.following).value;
   const followed = useAppSelector((state) => state.followed).value;
 
@@ -41,12 +45,48 @@ const Follow = () => {
   };
 
   const handleUnfollowClick = () => {
-    // TODO: api 연결
+    fetchUnfollow({ userId: selectedUserName }).then((res) => {
+      console.log('fetchUnfollow:47 ', res);
+      if (res.status === 200) {
+        toast.info(`${selectedUserName}님을 팔로우 취소하였습니다.`);
+        getFollowingList({ userId: auth.name }).then((data) => {
+          console.log('getFollowingList:53 ', data);
+          if (data.status === 200) {
+            const tmp = data.data.value.forEach((item: { user_id: string; description: string }) => {
+              return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+            });
+            dispatch(setFollowingList(tmp));
+          }
+        });
+      } else if (res.status === 400) {
+        toast.error(`${selectedUserName}님을 팔로우 취소하는데 실패하였습니다.`);
+      } else {
+        toast.warning('관리자에게 문의해주세요.');
+      }
+    });
     setUnfollowModalOpen(false);
   };
 
   const handleFollowClick = () => {
-    // TODO: api 연결
+    fetchFollow({ userId: searchUserName }).then((res) => {
+      console.log('fetchUnfollow:47 ', res);
+      if (res.status === 200) {
+        toast.info(`${searchUserName}님을 팔로우 하였습니다.`);
+        getFollowingList({ userId: auth.name }).then((data) => {
+          console.log('getFollowingList:76 ', data);
+          if (data.status === 200) {
+            const tmp = data.data.value.forEach((item: { user_id: string; description: string }) => {
+              return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+            });
+            dispatch(setFollowingList(tmp));
+          }
+        });
+      } else if (res.status === 400) {
+        toast.error(`${searchUserName}님을 팔로우하는데 실패하였습니다.`);
+      } else {
+        toast.warning('관리자에게 문의해주세요.');
+      }
+    });
     setFollowModalOpen(false);
   };
 
