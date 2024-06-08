@@ -8,7 +8,7 @@ import DiaryRead from './DiaryRead';
 import { useAppDispatch } from '../../../hooks/redux';
 import { modifyDiary } from '../../../store/diaryList.slice';
 
-const DiaryContent = ({ id, date, emoji, title, content }: DiaryInfo) => {
+const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
   const [dTitle, setTitle] = useState<string>(title);
   const [dEmoji, setEmoji] = useState<string>(emoji);
@@ -24,7 +24,7 @@ const DiaryContent = ({ id, date, emoji, title, content }: DiaryInfo) => {
 
   const handleButtonClick = () => {
     if (!isReadOnly) {
-      dispatch(modifyDiary({ id: -1, date: date, title: dTitle, emoji: dEmoji, content: dContent }));
+      dispatch(modifyDiary({ diary_id: -1, date: date, title: dTitle, emoji: dEmoji, content: dContent }));
     }
     setIsReadOnly((e) => !e);
   };

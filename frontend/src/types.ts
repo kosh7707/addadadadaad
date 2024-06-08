@@ -9,7 +9,7 @@ export interface UserDetailInfo extends UserInfo {
 }
 
 export interface DiaryInfo {
-  id: number;
+  diary_id: number;
   date: string;
   emoji: string;
   title: string;

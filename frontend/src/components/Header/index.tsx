@@ -6,6 +6,7 @@ import { logOut } from '../../store/auth.slice';
 import { resetDiaryList } from '../../store/diaryList.slice';
 import { resetFollowedList } from '../../store/followed.slice';
 import { resetFollowingList } from '../../store/following.slice';
+import { signOut } from '../../api/auth';
 
 export const HeaderWrapper = styled.div`
   width: 100vw;
@@ -39,10 +40,17 @@ const Header = () => {
   const auth = useAppSelector((state) => state.auth).value;
 
   const handleSignOutClick = () => {
-    dispatch(logOut());
-    dispatch(resetDiaryList());
-    dispatch(resetFollowedList());
-    dispatch(resetFollowingList());
+    signOut().then((res) => {
+      if (res.status === 200) {
+        dispatch(logOut());
+        dispatch(resetDiaryList());
+        dispatch(resetFollowedList());
+        dispatch(resetFollowingList());
+      } else if (res.status === 403) {
+      } else {
+        alert('관리자에게 문의해주세요.');
+      }
+    });
   };
 
   return (
