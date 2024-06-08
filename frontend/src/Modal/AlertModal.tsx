@@ -1,5 +1,6 @@
 import { VscChromeClose } from 'react-icons/vsc';
 import * as S from './styled';
+import { MainButton } from '../styled';
 
 export interface AlertModalProps {
   open: boolean;
@@ -18,7 +19,7 @@ const AlertModal = ({ open, handleClose, title, message }: AlertModalProps) => {
         </S.ModalContentTitle>
         <S.ModalContentMessage>{message}</S.ModalContentMessage>
         <S.ModalContentFoot>
-          <S.ModalButtonMain onClick={handleClose}>확인</S.ModalButtonMain>
+          <MainButton onClick={handleClose}>확인</MainButton>
         </S.ModalContentFoot>
       </S.ModalContentLayout>
     </S.ModalWrapper>

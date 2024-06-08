@@ -1,6 +1,7 @@
 import DOMPurify from 'dompurify';
 
-import { EmojiDivLg, StyledEditorRead, StyledInputDiv } from '../styled';
+import { EmojiDivLg, StyledEditorRead } from '../styled';
+import { XlInputDiv } from '../../../styled';
 
 export interface DiaryReadProps {
   title: string;
@@ -12,7 +13,7 @@ const DiaryRead = ({ title, emoji, content }: DiaryReadProps) => {
   return (
     <div style={{ padding: '10px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '20px' }}>
-        <StyledInputDiv>제목: {title}</StyledInputDiv>
+        <XlInputDiv style={{ flexGrow: '1' }}>제목: {title}</XlInputDiv>
         <EmojiDivLg>{emoji}</EmojiDivLg>
       </div>
       <StyledEditorRead

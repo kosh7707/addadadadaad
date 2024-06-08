@@ -1,36 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+import { VscChevronLeft, VscSettings } from 'react-icons/vsc';
+
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
-import { VscChevronLeft, VscSettings } from 'react-icons/vsc';
-import styled from 'styled-components';
-import { BUTTON_CIRCLE_SIZE, FONT_SIZE } from '../../constants';
-import { UserDetailInfo } from '../../types';
 import ConfirmModal from '../../Modal/ConfirmModal';
 
-export const FollowTitleWrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 6fr 6fr;
-  align-items: center;
-  text-align: center;
-  cursor: pointer;
-`;
-
-export const TextDiv = styled.div`
-  padding: 10px;
-  font-size: ${FONT_SIZE.lg};
-  font-weight: 600;
-`;
-
-export const UserGridDiv = styled.div`
-  padding: 10px;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  font-size: ${FONT_SIZE.lg};
-`;
+import * as S from './styled';
+import { UserDetailInfo } from '../../types';
+import { BUTTON_CIRCLE_SIZE, FONT_SIZE } from '../../constants';
 
 const Follow = () => {
   const [isFollowed, setIsFollowed] = useState<boolean>(false);
@@ -68,25 +46,25 @@ const Follow = () => {
   return (
     <>
       <div style={{ marginTop: '40px' }}>
-        <FollowTitleWrapper>
+        <S.FollowWrapper>
           <a href="/" style={{ fontSize: FONT_SIZE.xl }}>
             <VscChevronLeft />
           </a>
-          <TextDiv
+          <S.TextDiv
             style={{ borderBottom: `${!isFollowed ? '2px solid black' : '0'}` }}
             onClick={() => setIsFollowed(false)}
           >
             팔로잉
-          </TextDiv>
-          <TextDiv
+          </S.TextDiv>
+          <S.TextDiv
             style={{ borderBottom: `${isFollowed ? '2px solid black' : '0'}` }}
             onClick={() => setIsFollowed(true)}
           >
             팔로우
-          </TextDiv>
+          </S.TextDiv>
           {userList.map((item) => {
             return (
-              <UserGridDiv>
+              <S.UserGridDiv>
                 <img
                   src={item.imageUrl}
                   alt="userImage"
@@ -98,10 +76,10 @@ const Follow = () => {
                     <VscSettings onClick={() => handleFollowSettingClick(item.name)} />
                   </div>
                 )}
-              </UserGridDiv>
+              </S.UserGridDiv>
             );
           })}
-        </FollowTitleWrapper>
+        </S.FollowWrapper>
       </div>
       <ConfirmModal
         open={unfollowModalOpen}

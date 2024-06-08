@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react';
-import dayjs from 'dayjs';
 
-import DiaryEdit from './DiaryEdit';
-import { StyledButton } from '../styled';
-import { DiaryInfo } from '../../../types';
-import DiaryRead from './DiaryRead';
 import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { modifyDiary } from '../../../store/diaryList.slice';
+
+import DiaryEdit from './DiaryEdit';
+import DiaryRead from './DiaryRead';
+
 import { fetchDiary } from '../../../api/diary';
+import { MainButton } from '../../../styled';
+import { DiaryInfo } from '../../../types';
+import { FONT_SIZE } from '../../../constants';
 
 const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
@@ -18,13 +20,6 @@ const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
   const auth = useAppSelector((state) => state.auth).value;
 
   const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    setTitle(title);
-    setEmoji(emoji);
-    setContent(content);
-  }, [title, emoji, content]);
-
   const handleButtonClick = () => {
     if (!isReadOnly) {
       fetchDiary({ userId: auth.name, date: date, title: dTitle, emoji: dEmoji, content: dContent }).then((res) => {
@@ -50,6 +45,12 @@ const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
     setIsReadOnly((e) => !e);
   };
 
+  useEffect(() => {
+    setTitle(title);
+    setEmoji(emoji);
+    setContent(content);
+  }, [title, emoji, content]);
+
   return (
     <div style={{ padding: '10px' }}>
       {isReadOnly ? (
@@ -64,9 +65,9 @@ const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
           handleContent={setContent}
         />
       )}
-      <StyledButton style={{ float: 'right', marginTop: '10px' }} onClick={handleButtonClick}>
+      <MainButton style={{ float: 'right', boxShadow: 'none', fontSize: FONT_SIZE.xl }} onClick={handleButtonClick}>
         {isReadOnly ? '수정' : '저장'}
-      </StyledButton>
+      </MainButton>
     </div>
   );
 };

@@ -1,38 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
 
 import { useAppDispatch } from '../../hooks/redux';
 import { logIn } from '../../store/auth.slice';
 
-import { COLOR, FONT_SIZE } from '../../constants';
-
 import { signIn } from '../../api/auth';
-
-const StyledInput = styled.input`
-  width: 300px;
-  padding: 8px;
-  font-size: ${FONT_SIZE.md};
-  border: 1px solid ${COLOR.gray};
-  border-radius: 10px;
-  outline: none;
-  &::placeholder {
-    font-style: italic;
-  }
-`;
-
-const StyledButton = styled.button`
-  padding: 6px 10px;
-  border: none;
-  border-radius: 10px;
-  background-color: ${COLOR.gray};
-  color: white;
-  font-size: ${FONT_SIZE.md};
-  cursor: pointer;
-  &:hover {
-    background-color: ${COLOR.dark_gray};
-  }
-`;
+import { MainButton, MdInput } from '../../styled';
+import { COLOR, FONT_SIZE } from '../../constants';
 
 const SignIn = () => {
   const [userId, setUserId] = useState<string>('');
@@ -69,9 +43,9 @@ const SignIn = () => {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
       <div style={{ fontSize: FONT_SIZE.xl, fontWeight: 700, marginTop: '10%' }}>로그인</div>
-      <StyledInput placeholder="아이디" onChange={(e) => setUserId(e.target.value)} />
-      <StyledInput type="password" placeholder="비밀번호" onChange={(e) => serUserPw(e.target.value)} />
-      <StyledButton onClick={handleButtonClick}>로그인하기</StyledButton>
+      <MdInput placeholder="아이디" onChange={(e) => setUserId(e.target.value)} />
+      <MdInput type="password" placeholder="비밀번호" onChange={(e) => serUserPw(e.target.value)} />
+      <MainButton onClick={handleButtonClick}>로그인하기</MainButton>
       <div style={{ color: COLOR.gray, fontSize: FONT_SIZE.md, marginTop: '20px' }}>
         아직 회원이 아니신가요?{' '}
         <a href="/sign-up" style={{ color: COLOR.dark_gray }}>

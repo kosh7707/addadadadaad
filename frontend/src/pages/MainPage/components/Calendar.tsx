@@ -4,11 +4,10 @@ import { VscTriangleLeft, VscTriangleRight } from 'react-icons/vsc';
 
 import CalendarBoardContent from './CalendarBoardContent';
 import UserButton from '../../../components/UserButton';
-import { DiaryInfo, UserDetailInfo } from '../../../types';
-
-import { COLOR, FONT_SIZE } from '../../../constants';
 
 import { UserInfoText, UserContentWrapper, CalendarTitle, CalendarBoard } from '../styled';
+import { DiaryInfo, UserDetailInfo } from '../../../types';
+import { COLOR, FONT_SIZE } from '../../../constants';
 
 const weekHead = ['일', '월', '화', '수', '목', '금', '토'];
 

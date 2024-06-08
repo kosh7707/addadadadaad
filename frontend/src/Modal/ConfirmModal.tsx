@@ -1,5 +1,6 @@
 import { VscChromeClose } from 'react-icons/vsc';
 import * as S from './styled';
+import { MainButton, SubButton } from '../styled';
 
 export interface ConfirmModalProps {
   open: boolean;
@@ -19,8 +20,8 @@ const ConfirmModal = ({ open, handleClose, title, message, handleConfirmButtonCl
         </S.ModalContentTitle>
         <S.ModalContentMessage>{message}</S.ModalContentMessage>
         <S.ModalContentFoot>
-          <S.ModalButtonMain onClick={handleConfirmButtonClick}>확인</S.ModalButtonMain>
-          <S.ModalButtonSub onClick={handleClose}>취소</S.ModalButtonSub>
+          <MainButton onClick={handleConfirmButtonClick}>확인</MainButton>
+          <SubButton onClick={handleClose}>취소</SubButton>
         </S.ModalContentFoot>
       </S.ModalContentLayout>
     </S.ModalWrapper>

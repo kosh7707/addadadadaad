@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { COLOR, FONT_SIZE } from '../constants';
+import { FONT_SIZE } from '../constants';
 
 export const ModalWrapper = styled.div`
   position: absolute;
@@ -45,27 +45,4 @@ export const ModalContentFoot = styled.div`
   justify-content: right;
   gap: 10px;
   padding: 0px 10px;
-`;
-
-export const ModalButton = styled.button`
-  padding: 6px 10px;
-  border: none;
-  border-radius: 10px;
-  font-size: ${FONT_SIZE.lg};
-  cursor: pointer;
-  box-shadow: 3px 3px 1px 1px ${COLOR.gray};
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-`;
-
-export const ModalButtonMain = styled(ModalButton)`
-  background-color: white;
-  color: ${COLOR.dark_gray};
-`;
-
-export const ModalButtonSub = styled(ModalButton)`
-  background-color: ${COLOR.dark_gray};
-  color: white;
 `;
