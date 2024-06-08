@@ -24,3 +24,10 @@ export const UserGridDiv = styled.div`
   align-items: center;
   font-size: ${FONT_SIZE.lg};
 `;
+
+export const SearchWrapper = styled.div`
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+`;

@@ -9,6 +9,7 @@ import ConfirmModal from '../../Modal/ConfirmModal';
 import * as S from './styled';
 import { UserDetailInfo } from '../../types';
 import { BUTTON_CIRCLE_SIZE, FONT_SIZE } from '../../constants';
+import { MainButton, MdInput } from '../../styled';
 
 const Follow = () => {
   const [isFollowed, setIsFollowed] = useState<boolean>(false);
@@ -16,6 +17,10 @@ const Follow = () => {
 
   const [unfollowModalOpen, setUnfollowModalOpen] = useState<boolean>(false);
   const [selectedUserName, setSelectedUserName] = useState<string>('');
+
+  const [followModalOpen, setFollowModalOpen] = useState<boolean>(false);
+  const [searchUserName, setSearchUserName] = useState<string>('');
+
   const [modalMessage, setModalMessage] = useState<string>('');
 
   const dispatch = useAppDispatch();
@@ -23,9 +28,15 @@ const Follow = () => {
   const following = useAppSelector((state) => state.following).value;
   const followed = useAppSelector((state) => state.followed).value;
 
+  const handleSearchUserClick = () => {
+    if (searchUserName === '') return;
+    setModalMessage(`${searchUserName}을 팔로우 하시겠습니까?`);
+    setFollowModalOpen(true);
+  };
+
   const handleFollowSettingClick = (userName: string) => {
     setSelectedUserName(userName);
-    setModalMessage(`정말 ${userName}을 팔로우 취소 하시겠습니까?`);
+    setModalMessage(`${userName}을 팔로우 취소 하시겠습니까?`);
     setUnfollowModalOpen(true);
   };
 
@@ -34,8 +45,15 @@ const Follow = () => {
     setUnfollowModalOpen(false);
   };
 
+  const handleFollowClick = () => {
+    // TODO: api 연결
+    setFollowModalOpen(false);
+  };
+
   const handleModalClose = () => {
     setUnfollowModalOpen(false);
+    setFollowModalOpen(false);
+    setModalMessage('');
   };
 
   useEffect(() => {
@@ -46,6 +64,16 @@ const Follow = () => {
   return (
     <>
       <div style={{ marginTop: '40px' }}>
+        <S.SearchWrapper>
+          <MdInput
+            value={searchUserName}
+            placeholder="팔로우할 사용자의 이름을 입력하세요."
+            onChange={(e) => {
+              setSearchUserName(e.target.value);
+            }}
+          />
+          <MainButton onClick={handleSearchUserClick}>검색</MainButton>
+        </S.SearchWrapper>
         <S.FollowWrapper>
           <a href="/" style={{ fontSize: FONT_SIZE.xl }}>
             <VscChevronLeft />
@@ -87,6 +115,13 @@ const Follow = () => {
         title="팔로우 취소"
         message={modalMessage}
         handleConfirmButtonClick={handleUnfollowClick}
+      />
+      <ConfirmModal
+        open={followModalOpen}
+        handleClose={handleModalClose}
+        title="팔로우"
+        message={modalMessage}
+        handleConfirmButtonClick={handleFollowClick}
       />
     </>
   );
