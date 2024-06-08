@@ -89,6 +89,9 @@ const MainPage = () => {
         }
       });
 
+      dispatch(setDiaryList(diaryList));
+      dispatch(setFollowingList(UserInfoArray));
+      dispatch(setFollowedList(UserInfoLongArray));
       setUser(auth);
     }
   }, []);
