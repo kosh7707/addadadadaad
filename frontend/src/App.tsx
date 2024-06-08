@@ -1,5 +1,6 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import Header from './components/Header';
 import { PageWrapper, PageLayout } from './styled';
@@ -9,12 +10,12 @@ function App() {
   return (
     <>
       <Header />
+      <ToastContainer position="bottom-right" theme="light" pauseOnHover autoClose={1000} />
       <PageWrapper>
         <PageLayout>
           <Outlet />
         </PageLayout>
       </PageWrapper>
-      <ToastContainer position="bottom-right" theme="light" pauseOnHover autoClose={1000} />
     </>
   );
 }
