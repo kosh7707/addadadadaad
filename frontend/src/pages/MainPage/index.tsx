@@ -107,6 +107,7 @@ const MainPage = () => {
         <Calendar selectedDate={selectedDate} handleSelectedDate={setSelectedDate} user={user} diaryArray={diaryList} />
         <DiaryContent
           diary_id={diaryInfo.diary_id}
+          user={user.name}
           date={diaryInfo.date}
           title={diaryInfo.title}
           emoji={diaryInfo.emoji}
