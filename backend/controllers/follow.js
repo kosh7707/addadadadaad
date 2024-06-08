@@ -51,19 +51,19 @@ exports.getFollowerList = async (req, res, next) => {
         const result = await db.query(`select * from accounts where user_id = $1`, [user_id]);
         if (result.rows.length === 1) {
             const user_account_id = result.rows[0].id;
-            const follow_result = await db.query(`select followee_account_id from follow where follower_account_id = $1`, [user_account_id]);
-            const followee_ids = follow_result.rows.map(row => row.followee_account_id);
-            if (followee_ids.length > 0) {
-                const { rows } = await db.query(`select user_id, description from accounts where id = any($1::int[])`, [followee_ids]);
+            const follow_result = await db.query(`select follower_account_id from follow where followee_account_id = $1`, [user_account_id]);
+            const follower_ids = follow_result.rows.map(row => row.follower_account_id);
+            if (follower_ids.length > 0) {
+                const { rows } = await db.query(`select user_id, description from accounts where id = any($1::int[])`, [follower_ids]);
                 return res.status(200).json({
                     code: 200,
-                    message: "팔로워 조회 성공",
+                    message: "팔로잉 조회 성공",
                     value: rows
                 });
             }
             else return res.status(200).json({
                 code: 200,
-                message: "팔로워 조회 성공",
+                message: "팔로잉 조회 성공",
                 value: []
             });
         }
@@ -80,19 +80,19 @@ exports.getFollowingList = async (req, res, next) => {
         const result = await db.query(`select * from accounts where user_id = $1`, [user_id]);
         if (result.rows.length === 1) {
             const user_account_id = result.rows[0].id;
-            const follow_result = await db.query(`select follower_account_id from follow where followee_account_id = $1`, [user_account_id]);
-            const follower_ids = follow_result.rows.map(row => row.follower_account_id);
-            if (follower_ids.length > 0) {
-                const { rows } = await db.query(`select user_id, description from accounts where id = any($1::int[])`, [follower_ids]);
+            const follow_result = await db.query(`select followee_account_id from follow where follower_account_id = $1`, [user_account_id]);
+            const followee_ids = follow_result.rows.map(row => row.followee_account_id);
+            if (followee_ids.length > 0) {
+                const { rows } = await db.query(`select user_id, description from accounts where id = any($1::int[])`, [followee_ids]);
                 return res.status(200).json({
                     code: 200,
-                    message: "팔로잉 조회 성공",
+                    message: "팔로워 조회 성공",
                     value: rows
                 });
             }
             else return res.status(200).json({
                 code: 200,
-                message: "팔로잉 조회 성공",
+                message: "팔로워 조회 성공",
                 value: []
             });
         }
