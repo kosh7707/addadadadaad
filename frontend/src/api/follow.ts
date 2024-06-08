@@ -13,3 +13,14 @@ export const getFollowingList = async ({ userId }: { userId: string }) => {
     return error.response;
   }
 };
+
+export const getFollowedList = async ({ userId }: { userId: string }) => {
+  try {
+    const response = await axios.post('/api/follow/getfollowerlist', {
+      user_id: userId,
+    });
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+};

@@ -17,7 +17,7 @@ import { DiaryInfo, UserDetailInfo } from '../../types';
 import { UserInfoArray, UserInfoLongArray } from '../../mocks/user';
 import { DiaryInfoArray } from '../../mocks/diary';
 import { getDiary } from '../../api/diary';
-import { getFollowingList } from '../../api/follow';
+import { getFollowedList, getFollowingList } from '../../api/follow';
 
 const MainPage = () => {
   const [user, setUser] = useState<UserDetailInfo>({ id: -1, name: '', description: '', imageUrl: '' });
@@ -46,7 +46,6 @@ const MainPage = () => {
   };
 
   useEffect(() => {
-    // TODO: api
     if (auth.isAuth) {
       getDiary({ userId: auth.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
         (res: any) => {
@@ -75,9 +74,20 @@ const MainPage = () => {
           alert('관리자에게 문의해주세요.');
         }
       });
-      // dispatch(setFollowedList(UserInfoArray));
-      // dispatch(setFollowingList(UserInfoLongArray));
-      // dispatch(setDiaryList(DiaryInfoArray));
+      getFollowedList({ userId: auth.name }).then((res: any) => {
+        console.log('getFollowedList:79 ', res);
+        if (res.status === 200) {
+          const tmp = res.data.value.forEach((item: { user_id: string; description: string }) => {
+            return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+          });
+          dispatch(setFollowedList(tmp));
+        } else if (res.status === 400) {
+          alert('팔로워 조회에 실패했습니다.');
+        } else if (res.status === 403) {
+        } else {
+          alert('관리자에게 문의해주세요.');
+        }
+      });
 
       setUser(auth);
     }
