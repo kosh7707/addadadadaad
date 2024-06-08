@@ -1,9 +1,9 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
-import Router from './router/Router';
 import Header from './components/Header';
 import { PageWrapper, PageLayout } from './styled';
+import { Outlet } from 'react-router-dom';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <Header />
       <PageWrapper>
         <PageLayout>
-          <Router />
+          <Outlet />
         </PageLayout>
       </PageWrapper>
       <ToastContainer position="bottom-right" theme="light" pauseOnHover autoClose={1000} />
