@@ -56,16 +56,16 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <HeaderLayout>
-        <StyeldA href="/" style={{ fontSize: FONT_SIZE.lg, lineHeight: HEADER_HEIGHT }}>
+        <StyeldA href="/" style={{ fontSize: FONT_SIZE.xl, lineHeight: HEADER_HEIGHT }}>
           Diary
         </StyeldA>
         {auth.isAuth ? (
           <div onClick={handleSignOutClick}>
-            <VscSignOut style={{ fontSize: FONT_SIZE.lg, marginTop: '6px' }} />
+            <VscSignOut style={{ fontSize: FONT_SIZE.xl, marginTop: '6px' }} />
           </div>
         ) : (
           <StyeldA href="/sign-in">
-            <VscSignIn style={{ fontSize: FONT_SIZE.lg, marginTop: '6px' }} />
+            <VscSignIn style={{ fontSize: FONT_SIZE.xl, marginTop: '6px' }} />
           </StyeldA>
         )}
       </HeaderLayout>

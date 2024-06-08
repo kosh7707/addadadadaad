@@ -5,6 +5,7 @@ import { UserDetailInfo } from '../../../types';
 import { RESPONSE_WIDTH } from '../../../constants';
 import { useEffect, useState } from 'react';
 import { useAppSelector } from '../../../hooks/redux';
+import { useNavigate } from 'react-router-dom';
 
 export interface UserNavigatorProps {
   currUser: UserDetailInfo;
@@ -33,6 +34,7 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
   const [userDisplayArray, setUserDisplayArray] = useState<UserDetailInfo[]>([]);
   const [width, setWidth] = useState(window.innerWidth);
 
+  const navigate = useNavigate();
   const auth = useAppSelector((state) => state.auth).value;
 
   const handleResize = () => {
@@ -53,8 +55,7 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
   }, [width, userArray]);
 
   const handlePlusButtonClick = () => {
-    console.log('plus button clicked');
-    // TODO: 팔로우/팔로잉 목록으로 이동.
+    navigate('/follow');
   };
 
   return (

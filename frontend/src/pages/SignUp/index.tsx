@@ -57,7 +57,7 @@ const SignUp = () => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px' }}>
-      <div style={{ fontSize: FONT_SIZE.lg, fontWeight: 700, marginTop: '10%' }}>회원가입</div>
+      <div style={{ fontSize: FONT_SIZE.xl, fontWeight: 700, marginTop: '10%' }}>회원가입</div>
       <StyledInput placeholder="아이디" onChange={(e) => setUserId(e.target.value)} />
       <StyledInput type="password" placeholder="비밀번호" onChange={(e) => setUserPw(e.target.value)} />
       <StyledInput placeholder="한 줄 소개" onChange={(e) => setDescription(e.target.value)} />

@@ -60,7 +60,7 @@ export const EmojiDiv = styled.div`
   cursor: pointer;
   border-radius: 100%;
   background-color: ${COLOR.gray};
-  font-size: ${FONT_SIZE.lg};
+  font-size: ${FONT_SIZE.xl};
 `;
 /* end of components/CalendarBoardContent.tsx */
 
@@ -82,7 +82,7 @@ export const StyledButton = styled.button`
   border-radius: 10px;
   background-color: ${COLOR.gray};
   color: white;
-  font-size: ${FONT_SIZE.lg};
+  font-size: ${FONT_SIZE.xl};
   cursor: pointer;
   &:hover {
     background-color: ${COLOR.dark_gray};
@@ -111,7 +111,7 @@ export const StyledReactQuill = styled(ReactQuill)`
 export const StyledInput = styled.input`
   flex-grow: 1;
   padding: 8px;
-  font-size: ${FONT_SIZE.lg};
+  font-size: ${FONT_SIZE.xl};
   border: 1px solid ${COLOR.gray};
   border-radius: 10px;
   outline: none;
@@ -127,7 +127,7 @@ export const StyledInput = styled.input`
 export const StyledInputDiv = styled.div`
   flex-grow: 1;
   padding: 8px;
-  font-size: ${FONT_SIZE.lg};
+  font-size: ${FONT_SIZE.xl};
   border: 1px solid ${COLOR.gray};
   border-radius: 10px;
 `;
