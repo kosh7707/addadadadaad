@@ -30,11 +30,13 @@ export const StyeldA = styled.a`
   text-decoration: none;
 `;
 
+export const StyledButton = styled.div`
+  color: inherit;
+`;
+
 const Header = () => {
   const dispatch = useAppDispatch();
   const auth = useAppSelector((state) => state.auth).value;
-
-  console.log(auth);
 
   const handleSignOutClick = () => {
     dispatch(logOut());
@@ -50,9 +52,9 @@ const Header = () => {
           Diary
         </StyeldA>
         {auth.isAuth ? (
-          <StyeldA href="/" onClick={handleSignOutClick}>
+          <div onClick={handleSignOutClick}>
             <VscSignOut style={{ fontSize: FONT_SIZE.lg, marginTop: '6px' }} />
-          </StyeldA>
+          </div>
         ) : (
           <StyeldA href="/sign-in">
             <VscSignIn style={{ fontSize: FONT_SIZE.lg, marginTop: '6px' }} />

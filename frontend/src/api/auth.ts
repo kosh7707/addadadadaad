@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { userInfo } from 'os';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.defaults.withCredentials = true;
@@ -31,6 +30,15 @@ export const signIn = async ({ userId, userPw }: { userId: string; userPw: strin
       user_id: userId,
       user_pw: userPw,
     });
+    return response;
+  } catch (error: any) {
+    return error.response;
+  }
+};
+
+export const signOut = async () => {
+  try {
+    const response = await axios.get('/api/auth/logout');
     return response;
   } catch (error: any) {
     return error.response;

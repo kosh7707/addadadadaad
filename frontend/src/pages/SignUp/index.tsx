@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { COLOR, FONT_SIZE } from '../../constants';
-import { signUp } from '../../api';
+import { signUp } from '../../api/auth';
 
 const StyledInput = styled.input`
   width: 300px;
@@ -38,7 +38,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleButtonClick = () => {
-    if (userId === '') alert('사용할 id를 입력해주세요.');
+    if (userId === '') alert('사용할 아이디를 입력해주세요.');
     if (userPw === '') alert('사용할 비밀번호를 입력해주세요.');
     if (userId === '' || userPw === '') return 0;
 

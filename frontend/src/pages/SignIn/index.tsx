@@ -7,8 +7,7 @@ import { logIn } from '../../store/auth.slice';
 
 import { COLOR, FONT_SIZE } from '../../constants';
 
-import { UserAccount } from '../../mocks/user';
-import { signIn } from '../../api';
+import { signIn } from '../../api/auth';
 
 const StyledInput = styled.input`
   width: 300px;

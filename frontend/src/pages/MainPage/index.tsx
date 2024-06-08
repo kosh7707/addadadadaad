@@ -43,16 +43,16 @@ const MainPage = () => {
     setSelectedDate(dayjs().format('MM/DD/YY'));
   };
 
-  useEffect(() => {
-    // TODO: api
-    if (auth.isAuth) {
-      dispatch(setFollowedList(UserInfoArray));
-      dispatch(setFollowingList(UserInfoLongArray));
-      dispatch(setDiaryList(DiaryInfoArray));
+  // useEffect(() => {
+  //   // TODO: api
+  //   if (auth.isAuth) {
+  //     dispatch(setFollowedList(UserInfoArray));
+  //     dispatch(setFollowingList(UserInfoLongArray));
+  //     dispatch(setDiaryList(DiaryInfoArray));
 
-      setUser(auth);
-    }
-  }, []);
+  //     setUser(auth);
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (dayjs(selectedDate).month() === selectedMonth) return;
