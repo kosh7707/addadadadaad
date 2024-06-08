@@ -5,14 +5,17 @@ import DiaryEdit from './DiaryEdit';
 import { StyledButton } from '../styled';
 import { DiaryInfo } from '../../../types';
 import DiaryRead from './DiaryRead';
-import { useAppDispatch } from '../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../hooks/redux';
 import { modifyDiary } from '../../../store/diaryList.slice';
+import { fetchDiary } from '../../../api/diary';
 
 const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
   const [isReadOnly, setIsReadOnly] = useState<boolean>(true);
   const [dTitle, setTitle] = useState<string>(title);
   const [dEmoji, setEmoji] = useState<string>(emoji);
   const [dContent, setContent] = useState<string>(content);
+
+  const auth = useAppSelector((state) => state.auth).value;
 
   const dispatch = useAppDispatch();
 
@@ -24,7 +27,25 @@ const DiaryContent = ({ diary_id, date, emoji, title, content }: DiaryInfo) => {
 
   const handleButtonClick = () => {
     if (!isReadOnly) {
-      dispatch(modifyDiary({ diary_id: -1, date: date, title: dTitle, emoji: dEmoji, content: dContent }));
+      fetchDiary({ userId: auth.name, date: date, title: dTitle, emoji: dEmoji, content: dContent }).then((res) => {
+        console.log('fetchDiary:32 ', res);
+        if (res.status === 200) {
+          dispatch(
+            modifyDiary({
+              diary_id: res.data.value.diary_id,
+              date: res.data.value.date,
+              title: res.data.value.title,
+              emoji: res.data.value.emoji,
+              content: res.data.value.content,
+            }),
+          );
+        } else if (res.status === 400) {
+          alert('다이어리 작성에 실패했습니다.');
+        } else if (res.status === 403) {
+        } else {
+          alert('관리자에게 문의해주세요.');
+        }
+      });
     }
     setIsReadOnly((e) => !e);
   };
