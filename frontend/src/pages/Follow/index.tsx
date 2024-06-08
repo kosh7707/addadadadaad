@@ -130,23 +130,24 @@ const Follow = () => {
           >
             팔로우
           </S.TextDiv>
-          {userList.map((item) => {
-            return (
-              <S.UserGridDiv>
-                <img
-                  src={item.imageUrl}
-                  alt="userImage"
-                  style={{ width: BUTTON_CIRCLE_SIZE.md, height: BUTTON_CIRCLE_SIZE.md, borderRadius: '100%' }}
-                />
-                {item.name}
-                {!isFollowed && (
-                  <div style={{ flexGrow: '1', display: 'flex', justifyContent: 'flex-end' }}>
-                    <VscSettings onClick={() => handleFollowSettingClick(item.name)} />
-                  </div>
-                )}
-              </S.UserGridDiv>
-            );
-          })}
+          {userList &&
+            userList.map((item) => {
+              return (
+                <S.UserGridDiv>
+                  <img
+                    src={item.imageUrl}
+                    alt="userImage"
+                    style={{ width: BUTTON_CIRCLE_SIZE.md, height: BUTTON_CIRCLE_SIZE.md, borderRadius: '100%' }}
+                  />
+                  {item.name}
+                  {!isFollowed && (
+                    <div style={{ flexGrow: '1', display: 'flex', justifyContent: 'flex-end' }}>
+                      <VscSettings onClick={() => handleFollowSettingClick(item.name)} />
+                    </div>
+                  )}
+                </S.UserGridDiv>
+              );
+            })}
         </S.FollowWrapper>
       </div>
       <ConfirmModal
