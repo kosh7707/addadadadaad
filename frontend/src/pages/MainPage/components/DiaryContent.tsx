@@ -24,7 +24,6 @@ const DiaryContent = ({ diary_id, user, date, emoji, title, content }: DiaryInfo
   const handleButtonClick = () => {
     if (!isReadOnly) {
       fetchDiary({ userId: auth.name, date: date, title: dTitle, emoji: dEmoji, content: dContent }).then((res) => {
-        console.log('fetchDiary:32 ', res);
         if (res.status === 200) {
           dispatch(
             modifyDiary({

@@ -47,7 +47,6 @@ const MainPage = () => {
     if (auth.isAuth) {
       getDiary({ userId: auth.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
         (res: any) => {
-          console.log('getDiary:53 ', res);
           if (res.status === 200) {
             dispatch(setDiaryList(res.data.value));
           }
@@ -89,7 +88,6 @@ const MainPage = () => {
   useEffect(() => {
     getDiary({ userId: user.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
       (res: any) => {
-        console.log('getDiary:86 ', res);
         if (res.status === 200) {
           dispatch(setDiaryList(res.data.value));
         }
