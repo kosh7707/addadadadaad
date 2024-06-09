@@ -5,10 +5,32 @@
 Docker를 활용한 웹 다이어리 서비스
 
 ## B. 프로잭트 멤버 이름 및 멤버 별 담당한 파트 소개
-* 이다은 : 사용자 UI/UX 구현
-* 이풍헌 : 가상환경 구축
-* 고세화 : 데이터베이스 및 서버
-* 김경준 : 데이터베이스 및 서버
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center;">이름</th>
+      <th style="text-align: center;">내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center;">이다은</td>
+      <td>- React와 TypeScript를 활용하여 반응형 UI 구현 <br> - 다이어리 조회 및 작성, 수정 등 이벤트 상호작용 기능 개발</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">이풍헌</td>
+      <td>- Oracle Cloud의 instance, nginx와 Docker를 이용해 웹 서비스 배포환경 구성</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">고세화</td>
+      <td>- PostgreSQL, Node.js를 활용하여 데이터베이스, 서버 구축</td>
+    </tr>
+    <tr>
+      <td style="text-align: center;">김경준</td>
+      <td>- PPT, 발표 영상 제작 <br> - 프로젝트 일정 관리 및 테스트</td>
+    </tr>
+  </tbody>
+</table>
 
 ## C. 프로젝트 소개
 &ensp;본 프로젝트는 사용자가 일상생활에 대한 기록을 간편하게 기록할 수 있도록 웹 다이어리 서비스를 개발하는 것을 목표로 한다. 해당 서비스는 사용자의 일정을 관리하고, 일상적인 내용과 기분을 기록할 수 있도록 한다.
