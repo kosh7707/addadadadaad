@@ -70,7 +70,7 @@ Docker를 활용한 웹 다이어리 서비스
 ### 1. Git clone
 ```
 git clone https://github.com/kosh7707/cloud-computing-term-project.git
-cd /cloud-computing-term-project/src
+cd cloud-computing-term-project/src
 ```
 ### 2. Docker-compose 실행
 ```
