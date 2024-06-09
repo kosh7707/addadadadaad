@@ -21,10 +21,8 @@ const SignIn = () => {
 
     signIn({ userId, userPw }).then((res) => {
       if (res.status === 200) {
-        // TODO: id 삭제
         dispatch(
           logIn({
-            id: 1,
             imageUrl: 'images/user.png',
             name: res.data.value.user_id,
             description: res.data.value.description,

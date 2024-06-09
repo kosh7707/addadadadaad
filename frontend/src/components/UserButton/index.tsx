@@ -3,14 +3,13 @@ import { UserInfo } from '../../types';
 
 export interface UserButtonProps extends UserInfo {
   size: 'sm' | 'md' | 'lg';
-  handleButtonClick: (userId: number) => void;
+  handleButtonClick: (userName: string) => void;
   showText?: boolean;
   isEmphasis?: boolean;
 }
 
 const UserButton = ({
   size,
-  id,
   imageUrl,
   name,
   handleButtonClick,
@@ -24,7 +23,7 @@ const UserButton = ({
 
   return (
     <div
-      onClick={() => handleButtonClick(id)}
+      onClick={() => handleButtonClick(name)}
       style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}
     >
       <img

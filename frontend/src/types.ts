@@ -1,5 +1,4 @@
 export interface UserInfo {
-  id: number;
   imageUrl: string;
   name: string;
 }

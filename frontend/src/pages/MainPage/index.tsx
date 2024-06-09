@@ -18,7 +18,7 @@ import { getDiary } from '../../api/diary';
 import { getFollowedList, getFollowingList } from '../../api/follow';
 
 const MainPage = () => {
-  const [user, setUser] = useState<UserDetailInfo>({ id: -1, name: '', description: '', imageUrl: '' });
+  const [user, setUser] = useState<UserDetailInfo>({ name: '', description: '', imageUrl: '' });
 
   const [selectedDate, setSelectedDate] = useState<string>(dayjs().format('MM/DD/YY'));
   const [selectedMonth, setSelectedMonth] = useState<number>(dayjs().month());
@@ -30,16 +30,16 @@ const MainPage = () => {
   const following = useAppSelector((state) => state.following).value;
   const diaryList = useAppSelector((state) => state.diaryList).value;
 
-  const handleChangeUserClick = (userId: number) => {
-    if (user.id === userId) return;
+  const handleChangeUserClick = (userName: string) => {
+    if (user.name === userName) return;
 
-    if (auth.id === userId) {
+    if (auth.name === userName) {
       setUser(auth);
       return;
     }
 
-    const filtered = following.filter((item) => item.id === userId);
-    setUser(filtered[0] ? filtered[0] : { id: -1, name: '', description: '', imageUrl: '' });
+    const filtered = following.filter((item) => item.name === userName);
+    setUser(filtered[0] ? filtered[0] : { name: '', description: '', imageUrl: '' });
     setSelectedDate(dayjs().format('MM/DD/YY'));
   };
 
