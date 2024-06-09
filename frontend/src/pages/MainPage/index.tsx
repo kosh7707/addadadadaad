@@ -86,6 +86,7 @@ const MainPage = () => {
   }, [selectedDate, diaryList]);
 
   useEffect(() => {
+    if (user.name === '') return;
     getDiary({ userId: user.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
       (res: any) => {
         if (res.status === 200) {
@@ -94,6 +95,11 @@ const MainPage = () => {
       },
     );
   }, [user, selectedMonth]);
+
+  useEffect(() => {
+    setUser(auth);
+    setSelectedDate(dayjs().format('MM/DD/YY'));
+  }, [auth]);
 
   return (
     <div style={{ width: '100%' }}>
