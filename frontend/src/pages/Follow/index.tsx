@@ -52,7 +52,7 @@ const Follow = () => {
         getFollowingList({ userId: auth.name }).then((data) => {
           console.log('getFollowingList:53 ', data);
           if (data.status === 200) {
-            const tmp = data.data.value.forEach((item: { user_id: string; description: string }) => {
+            const tmp = data.data.value.map((item: { user_id: string; description: string }) => {
               return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
             });
             dispatch(setFollowingList(tmp));
@@ -69,13 +69,11 @@ const Follow = () => {
 
   const handleFollowClick = () => {
     fetchFollow({ userId: searchUserName }).then((res) => {
-      console.log('fetchUnfollow:47 ', res);
       if (res.status === 200) {
         toast.info(`${searchUserName}님을 팔로우 하였습니다.`);
         getFollowingList({ userId: auth.name }).then((data) => {
-          console.log('getFollowingList:76 ', data);
           if (data.status === 200) {
-            const tmp = data.data.value.forEach((item: { user_id: string; description: string }) => {
+            const tmp = data.data.value.map((item: { user_id: string; description: string }) => {
               return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
             });
             dispatch(setFollowingList(tmp));

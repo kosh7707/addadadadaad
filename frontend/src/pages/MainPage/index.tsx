@@ -47,7 +47,6 @@ const MainPage = () => {
     if (auth.isAuth) {
       getDiary({ userId: auth.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
         (res: any) => {
-          console.log('getDiary:53 ', res);
           if (res.status === 200) {
             dispatch(setDiaryList(res.data.value));
           }
@@ -56,7 +55,7 @@ const MainPage = () => {
       getFollowingList({ userId: auth.name }).then((res: any) => {
         console.log('getFollowingList:64 ', res);
         if (res.status === 200) {
-          const tmp = res.data.value.forEach((item: { user_id: string; description: string }) => {
+          const tmp = res.data.value.map((item: { user_id: string; description: string }) => {
             return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
           });
           dispatch(setFollowingList(tmp));
@@ -65,7 +64,7 @@ const MainPage = () => {
       getFollowedList({ userId: auth.name }).then((res: any) => {
         console.log('getFollowedList:79 ', res);
         if (res.status === 200) {
-          const tmp = res.data.value.forEach((item: { user_id: string; description: string }) => {
+          const tmp = res.data.value.map((item: { user_id: string; description: string }) => {
             return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
           });
           dispatch(setFollowedList(tmp));
@@ -89,7 +88,6 @@ const MainPage = () => {
   useEffect(() => {
     getDiary({ userId: user.name, year: dayjs(selectedDate).year(), month: dayjs(selectedDate).month() + 1 }).then(
       (res: any) => {
-        console.log('getDiary:86 ', res);
         if (res.status === 200) {
           dispatch(setDiaryList(res.data.value));
         }
