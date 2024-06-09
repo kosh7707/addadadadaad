@@ -107,7 +107,7 @@ const Follow = () => {
   useEffect(() => {
     if (isFollowed) setUserList(followed);
     else setUserList(following);
-  }, [isFollowed]);
+  }, [isFollowed, following, followed]);
 
   useEffect(() => {
     if (auth.isAuth) return;
