@@ -44,6 +44,7 @@ const Follow = () => {
   };
 
   const handleSearchUserClick = () => {
+    if (!auth.isAuth) return;
     if (searchUserName === '') return;
     setModalMessage(`${searchUserName}을 팔로우 하시겠습니까?`);
     setFollowModalOpen(true);
