@@ -55,7 +55,7 @@ const MainPage = () => {
       getFollowingList({ userId: auth.name }).then((res: any) => {
         if (res.status === 200) {
           const tmp = res.data.value.map((item: { user_id: string; description: string }) => {
-            return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+            return { imageUrl: 'images/user.png', name: item.user_id, description: item.description };
           });
           dispatch(setFollowingList(tmp));
         }
@@ -63,7 +63,7 @@ const MainPage = () => {
       getFollowedList({ userId: auth.name }).then((res: any) => {
         if (res.status === 200) {
           const tmp = res.data.value.map((item: { user_id: string; description: string }) => {
-            return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+            return { imageUrl: 'images/user.png', name: item.user_id, description: item.description };
           });
           dispatch(setFollowedList(tmp));
         }

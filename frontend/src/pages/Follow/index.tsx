@@ -63,7 +63,7 @@ const Follow = () => {
         getFollowingList({ userId: auth.name }).then((data) => {
           if (data.status === 200) {
             const tmp = data.data.value.map((item: { user_id: string; description: string }) => {
-              return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+              return { imageUrl: 'images/user.png', name: item.user_id, description: item.description };
             });
             dispatch(setFollowingList(tmp));
           }
@@ -84,7 +84,7 @@ const Follow = () => {
         getFollowingList({ userId: auth.name }).then((data) => {
           if (data.status === 200) {
             const tmp = data.data.value.map((item: { user_id: string; description: string }) => {
-              return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+              return { imageUrl: 'images/user.png', name: item.user_id, description: item.description };
             });
             dispatch(setFollowingList(tmp));
           }
