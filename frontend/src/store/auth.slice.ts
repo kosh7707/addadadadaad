@@ -11,7 +11,6 @@ interface InitialState {
 
 const initialState: InitialState = {
   value: {
-    id: 0,
     isAuth: false,
     name: '',
     description: '',
@@ -26,7 +25,6 @@ export const authSlice = createSlice({
     logOut: () => initialState,
     logIn: (state, action: PayloadAction<UserDetailInfo>) => ({
       value: {
-        id: action.payload.id,
         isAuth: true,
         name: action.payload.name,
         description: action.payload.description,

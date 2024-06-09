@@ -49,29 +49,26 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
   return (
     <UserNavigatorWrapper>
       <UserButton
-        id={auth.id}
         imageUrl={auth.imageUrl}
         name="me"
         size={size}
         handleButtonClick={() => handleUserClick(auth.name)}
         showText
-        isEmphasis={currUser.id === auth.id}
+        isEmphasis={currUser.name === auth.name}
       />
       {userDisplayArray.map((item) => (
         <UserButton
-          key={item.id}
-          id={item.id}
+          key={item.name}
           imageUrl={item.imageUrl}
           name={item.name}
           size={size}
           handleButtonClick={() => handleUserClick(item.name)}
           showText
-          isEmphasis={currUser.id === item.id}
+          isEmphasis={currUser.name === item.name}
         />
       ))}
       <UserButton
         key={-1}
-        id={-1}
         imageUrl="images/plus.png"
         name=""
         size={size}

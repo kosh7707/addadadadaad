@@ -10,7 +10,6 @@ export interface UserButtonProps extends UserInfo {
 
 const UserButton = ({
   size,
-  id,
   imageUrl,
   name,
   handleButtonClick,

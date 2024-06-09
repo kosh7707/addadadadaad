@@ -18,7 +18,7 @@ import { getDiary } from '../../api/diary';
 import { getFollowedList, getFollowingList } from '../../api/follow';
 
 const MainPage = () => {
-  const [user, setUser] = useState<UserDetailInfo>({ id: -1, name: '', description: '', imageUrl: '' });
+  const [user, setUser] = useState<UserDetailInfo>({ name: '', description: '', imageUrl: '' });
 
   const [selectedDate, setSelectedDate] = useState<string>(dayjs().format('MM/DD/YY'));
   const [selectedMonth, setSelectedMonth] = useState<number>(dayjs().month());
@@ -39,7 +39,7 @@ const MainPage = () => {
     }
 
     const filtered = following.filter((item) => item.name === userName);
-    setUser(filtered[0] ? filtered[0] : { id: -1, name: '', description: '', imageUrl: '' });
+    setUser(filtered[0] ? filtered[0] : { name: '', description: '', imageUrl: '' });
     setSelectedDate(dayjs().format('MM/DD/YY'));
   };
 

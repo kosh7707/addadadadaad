@@ -40,13 +40,7 @@ const Calendar = ({ selectedDate, handleSelectedDate, user, diaryArray }: Calend
     <div style={{ padding: '10px' }}>
       {user && (
         <UserContentWrapper>
-          <UserButton
-            size="lg"
-            id={user.id}
-            imageUrl={user.imageUrl}
-            name={user.name}
-            handleButtonClick={handleSelfClick}
-          />
+          <UserButton size="lg" imageUrl={user.imageUrl} name={user.name} handleButtonClick={handleSelfClick} />
           <div style={{ width: 'calc(100% - 90px)', display: 'flex', flexDirection: 'column' }}>
             <UserInfoText style={{ fontSize: FONT_SIZE.xl, fontWeight: 'bold' }}>
               {user.name === '' ? '로그인하지 않았습니다.' : user.name}
