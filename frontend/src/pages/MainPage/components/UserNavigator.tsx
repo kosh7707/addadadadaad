@@ -51,7 +51,7 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
       <UserButton
         id={auth.id}
         imageUrl={auth.imageUrl}
-        name={auth.name}
+        name="me"
         size={size}
         handleButtonClick={() => handleUserClick(auth.id)}
         showText
