@@ -21,19 +21,19 @@ const Header = () => {
   const navigator = useNavigate();
 
   const handleSignOutClick = () => {
+    dispatch(logOut());
+    dispatch(resetDiaryList());
+    dispatch(resetFollowedList());
+    dispatch(resetFollowingList());
     signOut().then((res) => {
       if (res.status === 200) {
-        dispatch(logOut());
-        dispatch(resetDiaryList());
-        dispatch(resetFollowedList());
-        dispatch(resetFollowingList());
-        navigator('/');
         toast.info('로그아웃 되었습니다.');
       } else if (res.status === 403) {
       } else {
         toast.warning('관리자에게 문의해주세요.');
       }
     });
+    navigator('/');
   };
 
   return (
