@@ -102,6 +102,9 @@ sudo apt install docker-compose
 sudo docker-compose up -d --build
 ```
 
+### 시연 영상
+
+https://github.com/kosh7707/cloud-computing-term-project/assets/144891051/797a686c-613b-4198-bd7a-2457413bb818
 
 
 도메인
