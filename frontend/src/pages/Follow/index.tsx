@@ -6,6 +6,7 @@ import { toast } from 'react-toastify';
 import { useAppDispatch, useAppSelector } from '../../hooks/redux';
 
 import ConfirmModal from '../../Modal/ConfirmModal';
+import AlertModal from '../../Modal/AlertModal';
 
 import * as S from './styled';
 import { UserDetailInfo } from '../../types';
@@ -13,6 +14,7 @@ import { BUTTON_CIRCLE_SIZE, FONT_SIZE } from '../../constants';
 import { MainButton, MdInput } from '../../styled';
 import { fetchFollow, fetchUnfollow, getFollowingList } from '../../api/follow';
 import { setFollowingList } from '../../store/following.slice';
+import { useNavigate } from 'react-router-dom';
 
 const Follow = () => {
   const [isFollowed, setIsFollowed] = useState<boolean>(false);
@@ -24,6 +26,8 @@ const Follow = () => {
   const [followModalOpen, setFollowModalOpen] = useState<boolean>(false);
   const [searchUserName, setSearchUserName] = useState<string>('');
 
+  const [signInModalOpen, setSignInModalOpen] = useState<boolean>(false);
+
   const [modalMessage, setModalMessage] = useState<string>('');
 
   const dispatch = useAppDispatch();
@@ -31,6 +35,13 @@ const Follow = () => {
   const auth = useAppSelector((state) => state.auth).value;
   const following = useAppSelector((state) => state.following).value;
   const followed = useAppSelector((state) => state.followed).value;
+
+  const navigate = useNavigate();
+
+  const handleSignInModalClose = () => {
+    setSignInModalOpen(false);
+    navigate('/sign-in');
+  };
 
   const handleSearchUserClick = () => {
     if (searchUserName === '') return;
@@ -99,6 +110,12 @@ const Follow = () => {
     else setUserList(following);
   }, [isFollowed]);
 
+  useEffect(() => {
+    if (auth.isAuth) return;
+    setModalMessage(`로그인이 필요합니다.`);
+    setSignInModalOpen(true);
+  }, []);
+
   return (
     <>
       <div style={{ marginTop: '20px' }}>
@@ -162,6 +179,7 @@ const Follow = () => {
         message={modalMessage}
         handleConfirmButtonClick={handleFollowClick}
       />
+      <AlertModal open={signInModalOpen} handleClose={handleSignInModalClose} title="알림" message={modalMessage} />
     </>
   );
 };
