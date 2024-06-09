@@ -58,14 +58,12 @@ const Follow = () => {
 
   const handleUnfollowClick = () => {
     fetchUnfollow({ userId: selectedUserName }).then((res) => {
-      console.log('fetchUnfollow:47 ', res);
       if (res.status === 200) {
         toast.info(`${selectedUserName}님을 팔로우 취소하였습니다.`);
         getFollowingList({ userId: auth.name }).then((data) => {
-          console.log('getFollowingList:53 ', data);
           if (data.status === 200) {
             const tmp = data.data.value.map((item: { user_id: string; description: string }) => {
-              return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+              return { imageUrl: 'images/user.png', name: item.user_id, description: item.description };
             });
             dispatch(setFollowingList(tmp));
           }
@@ -86,7 +84,7 @@ const Follow = () => {
         getFollowingList({ userId: auth.name }).then((data) => {
           if (data.status === 200) {
             const tmp = data.data.value.map((item: { user_id: string; description: string }) => {
-              return { id: 1, imageUrl: 'images/user.png', name: item.user_id, description: item.description };
+              return { imageUrl: 'images/user.png', name: item.user_id, description: item.description };
             });
             dispatch(setFollowingList(tmp));
           }
@@ -109,7 +107,7 @@ const Follow = () => {
   useEffect(() => {
     if (isFollowed) setUserList(followed);
     else setUserList(following);
-  }, [isFollowed]);
+  }, [isFollowed, following, followed]);
 
   useEffect(() => {
     if (auth.isAuth) return;
