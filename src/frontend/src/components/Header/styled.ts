@@ -4,6 +4,7 @@ import { HEADER_HEIGHT, PAGE_MAX_WIDTH } from '../../constants';
 export const HeaderWrapper = styled.div`
   width: 100vw;
   height: ${HEADER_HEIGHT};
+  background-color: white;
   position: fixed;
   top: 0;
   left: 0;
