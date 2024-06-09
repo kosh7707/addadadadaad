@@ -30,15 +30,15 @@ const MainPage = () => {
   const following = useAppSelector((state) => state.following).value;
   const diaryList = useAppSelector((state) => state.diaryList).value;
 
-  const handleChangeUserClick = (userId: number) => {
-    if (user.id === userId) return;
+  const handleChangeUserClick = (userName: string) => {
+    if (user.name === userName) return;
 
-    if (auth.id === userId) {
+    if (auth.name === userName) {
       setUser(auth);
       return;
     }
 
-    const filtered = following.filter((item) => item.id === userId);
+    const filtered = following.filter((item) => item.name === userName);
     setUser(filtered[0] ? filtered[0] : { id: -1, name: '', description: '', imageUrl: '' });
     setSelectedDate(dayjs().format('MM/DD/YY'));
   };

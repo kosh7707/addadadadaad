@@ -24,7 +24,7 @@ const Calendar = ({ selectedDate, handleSelectedDate, user, diaryArray }: Calend
     handleSelectedDate(date);
   };
 
-  const handleSelfClick = (id: number) => {};
+  const handleSelfClick = (name: string) => {};
 
   const handlePrevMonthClick = () => {
     const newDate = dayjs(selectedDate).subtract(1, 'month').endOf('month').format('MM/DD/YY');

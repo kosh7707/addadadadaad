@@ -13,7 +13,7 @@ import { RESPONSE_WIDTH } from '../../../constants';
 export interface UserNavigatorProps {
   currUser: UserDetailInfo;
   userArray: UserDetailInfo[];
-  handleUserClick: (userId: number) => void;
+  handleUserClick: (userName: string) => void;
   size: 'sm' | 'md' | 'lg';
 }
 
@@ -53,7 +53,7 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
         imageUrl={auth.imageUrl}
         name="me"
         size={size}
-        handleButtonClick={() => handleUserClick(auth.id)}
+        handleButtonClick={() => handleUserClick(auth.name)}
         showText
         isEmphasis={currUser.id === auth.id}
       />
@@ -64,7 +64,7 @@ const UserNavigator = ({ currUser, userArray, handleUserClick, size }: UserNavig
           imageUrl={item.imageUrl}
           name={item.name}
           size={size}
-          handleButtonClick={(id: number) => handleUserClick(id)}
+          handleButtonClick={() => handleUserClick(item.name)}
           showText
           isEmphasis={currUser.id === item.id}
         />
